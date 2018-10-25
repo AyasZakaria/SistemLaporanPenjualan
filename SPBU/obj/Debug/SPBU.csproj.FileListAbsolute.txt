@@ -1,0 +1,23 @@
+D:\TA PPL\SBPU\SPBU\SPBU\bin\Debug\SPBU.exe.config
+D:\TA PPL\SBPU\SPBU\SPBU\bin\Debug\SPBU.exe
+D:\TA PPL\SBPU\SPBU\SPBU\bin\Debug\SPBU.pdb
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.csprojResolveAssemblyReference.cache
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.menuUtama.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.Properties.Resources.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.csproj.GenerateResource.Cache
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.exe
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.pdb
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\bin\Debug\SPBU.exe.config
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.exe
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.pdb
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\bin\Debug\SPBU.exe
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\bin\Debug\SPBU.pdb
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.csprojResolveAssemblyReference.cache
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_BBM.resources
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_LOGIN.resources
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_PENGELUARAN.resources
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_POMPA.resources
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_TRANSAKSI.resources
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.GUI.menuUtama.resources
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.Properties.Resources.resources
+D:\LEARN\Kuliah\PPL\PPL Ganti Project\SPBU\SPBU\obj\Debug\SPBU.csproj.GenerateResource.Cache
