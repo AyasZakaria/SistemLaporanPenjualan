@@ -1,0 +1,9 @@
+D:\TA PPL\SBPU\SPBU\SPBU\bin\Debug\SPBU.exe.config
+D:\TA PPL\SBPU\SPBU\SPBU\bin\Debug\SPBU.exe
+D:\TA PPL\SBPU\SPBU\SPBU\bin\Debug\SPBU.pdb
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.csprojResolveAssemblyReference.cache
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.menuUtama.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.Properties.Resources.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.csproj.GenerateResource.Cache
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.exe
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.pdb
