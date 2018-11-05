@@ -16,7 +16,7 @@ namespace SPBU
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI.Form_LOGIN());
+            Application.Run(new GUI.menuUtama());
         }
     }
 }

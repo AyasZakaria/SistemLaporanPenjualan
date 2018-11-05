@@ -16,5 +16,15 @@ namespace SPBU.GUI
         {
             InitializeComponent();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form_TRANSAKSI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
