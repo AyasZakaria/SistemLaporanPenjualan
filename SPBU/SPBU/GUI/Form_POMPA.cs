@@ -15,6 +15,7 @@ namespace SPBU.GUI
     {
         Kelas.Koneksi konn = new Kelas.Koneksi();
         public String id_bbm_pompa;
+       
 
         public Form_POMPA()
         {
@@ -171,6 +172,7 @@ namespace SPBU.GUI
         private void button_id_Click(object sender, EventArgs e)
         {
             Dialog_BBM bbm = new Dialog_BBM();
+            Dialog_BBM.men = "pompa";
             bbm.pompa = this;
             bbm.ShowDialog();
         }

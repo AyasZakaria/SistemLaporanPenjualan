@@ -14,7 +14,7 @@ namespace SPBU.GUI
     public partial class Form_LOGIN : Form
     {
         private SqlDataReader dr;
-        Kelas.Koneksi konn = new Kelas.Koneksi(); 
+        Kelas.Koneksi konn = new Kelas.Koneksi();
         public Form_LOGIN()
         {
             InitializeComponent();

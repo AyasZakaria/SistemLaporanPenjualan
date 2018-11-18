@@ -15,6 +15,7 @@ namespace SPBU.GUI
     {
         Kelas.Koneksi konn = new Kelas.Koneksi();
         public String id_bbm_penerimaan;
+      
 
         public Form_PENERIMAAN()
         {
@@ -103,7 +104,7 @@ namespace SPBU.GUI
                 command.Connection = konn.GetConn();
                 command.Connection.Open();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO tbl_penerimaan VALUES('" + textBox_idpenerimaan.Text + "','" + id_bbm_penerimaan + "','" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "')";
+                command.CommandText = "INSERT INTO tbl_penerimaan VALUES('" + textBox_idpenerimaan.Text + "','" + id_bbm_penerimaan + "','" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "','" + textBox_jumlahPenerimaan.Text + "')";
                 command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil 
                 MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
@@ -162,6 +163,7 @@ namespace SPBU.GUI
         private void button_caribbm_Click(object sender, EventArgs e)
         {
             Dialog_BBM bbm = new Dialog_BBM();
+            Dialog_BBM.men = "penerimaan";
             bbm.penerimaan = this;
             bbm.ShowDialog();
         }

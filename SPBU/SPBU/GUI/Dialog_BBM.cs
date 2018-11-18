@@ -16,6 +16,8 @@ namespace SPBU.GUI
         Kelas.Koneksi konn = new Kelas.Koneksi();
         public Form_POMPA pompa = null;
         public Form_PENERIMAAN penerimaan = null;
+        public Form_TRANSAKSI transaksi = null;
+        public static string men;
 
         public Dialog_BBM()
         {
@@ -64,19 +66,24 @@ namespace SPBU.GUI
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (pompa == null)
+            if (men == "penerimaan"){
+                penerimaan.id_bbm_penerimaan = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                penerimaan.textBox_namaBbm_penerimaan.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Dispose();
+
+            }
+            else if ( men == "pompa")
             {
                 pompa.id_bbm_pompa = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 pompa.textBox_namabbm.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 Dispose();
             }
-            else
-            {
-                penerimaan.id_bbm_penerimaan = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                penerimaan.textBox_namaBbm_penerimaan.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                Dispose();
-            }
-
+           // else if (men == "transaksi")
+            //{
+              //  transaksi.id_bbm_transaksi = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                //transaksi.textBox_namaBbm.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                //Dispose();
+            //}
         }
 
         private void textBox_cari_TextChanged(object sender, EventArgs e)
