@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Dialog_BBM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialog_BBM.Designer.cs">
+      <DependentUpon>Dialog_BBM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Dialog_Pompa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialog_Pompa.Designer.cs">
+      <DependentUpon>Dialog_Pompa.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Form_BBM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +67,12 @@
     </Compile>
     <Compile Include="GUI\Form_LOGIN.Designer.cs">
       <DependentUpon>Form_LOGIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form_PENERIMAAN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form_PENERIMAAN.Designer.cs">
+      <DependentUpon>Form_PENERIMAAN.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Form_PENGELUARAN.cs">
       <SubType>Form</SubType>
@@ -80,13 +98,33 @@
     <Compile Include="GUI\menuUtama.Designer.cs">
       <DependentUpon>menuUtama.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kelas\AutoNumber.cs" />
+    <Compile Include="Kelas\Koneksi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\Dialog_BBM.resx">
+      <DependentUpon>Dialog_BBM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialog_Pompa.resx">
+      <DependentUpon>Dialog_Pompa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_BBM.resx">
       <DependentUpon>Form_BBM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_LOGIN.resx">
       <DependentUpon>Form_LOGIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_PENERIMAAN.resx">
+      <DependentUpon>Form_PENERIMAAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_PENGELUARAN.resx">
+      <DependentUpon>Form_PENGELUARAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_POMPA.resx">
+      <DependentUpon>Form_POMPA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form_TRANSAKSI.resx">
+      <DependentUpon>Form_TRANSAKSI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\menuUtama.resx">
       <DependentUpon>menuUtama.cs</DependentUpon>
@@ -115,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Gambar\" />
-    <Folder Include="Kelas\" />
     <Folder Include="Laporan\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
