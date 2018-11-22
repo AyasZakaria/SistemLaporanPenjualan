@@ -176,6 +176,7 @@
             this.textBox_cari.Name = "textBox_cari";
             this.textBox_cari.Size = new System.Drawing.Size(164, 22);
             this.textBox_cari.TabIndex = 75;
+            this.textBox_cari.TextChanged += new System.EventHandler(this.textBox_cari_TextChanged);
             // 
             // Form_PENGELUARAN
             // 

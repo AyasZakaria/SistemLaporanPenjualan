@@ -16,17 +16,28 @@ namespace SPBU.GUI
     {
         Kelas.Koneksi konn = new Kelas.Koneksi();
         public String id_bbm_transaksi;
-        public String id_pompa1;
-        public String id_pompa2;
-        public String id_pompa3;
-        public String id_pompa4;
+        Kelas.AutoNumber AutoNumber = new Kelas.AutoNumber();
         String id_transaksi_detail;
+        long hargapertalite;
+        long hargasolar;
+        long hargapremium;
+        long hargapertamax;
 
         public Form_TRANSAKSI()
         {
             InitializeComponent();
             clear();
             loadDaftar();
+            //disabledCombo();
+            isicombobox();
+            try
+            {
+                textBox_idTransaksi.Text = AutoNumber.Auto("tbl_transaksi", "T", "id_transaksi");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("" + e);
+            }
             
         }
         public DataSet getData()
@@ -66,20 +77,386 @@ namespace SPBU.GUI
         }//header
         public void loadDaftar()
         {
+            //hargapertalite
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlCmd1 = new SqlCommand("SELECT harga FROM tbl_bbm WHERE id_bbm ='B-001'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlCmd1.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                hargapertalite = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+            sqlConnection.Close();
+            //hargasolar
+            SqlCommand sqlCmd2 = new SqlCommand("SELECT harga FROM tbl_bbm WHERE id_bbm ='B-002'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            sqlReader = sqlCmd2.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                hargasolar = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
             DataSet data = getData();
             dataGridView_transaksi.DataSource = data;
             dataGridView_transaksi.DataMember = "vtransaksi";
             header();
+            sqlConnection.Close();
+            //hargapremium
+            SqlCommand sqlCmd3 = new SqlCommand("SELECT harga FROM tbl_bbm WHERE id_bbm ='B-003'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            sqlReader = sqlCmd3.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                hargapremium = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlConnection.Close();
+            //hargapertamax
+            SqlCommand sqlCmd4 = new SqlCommand("SELECT harga FROM tbl_bbm WHERE id_bbm ='B-004'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            sqlReader = sqlCmd4.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                hargapertamax = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            
         }//loadDaftar
+
+        public void disabledCombo()
+        {
+            long jumlahPertalite = 0, jumlahSolar = 0, jumlahPremium = 0, jumlahPertamax = 0;
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlCmd = new SqlCommand("SELECT COUNT(*) FROM tbl_pompa WHERE id_bbm ='B-001'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                jumlahPertalite = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+
+
+            sqlCmd = new SqlCommand("SELECT COUNT(*) FROM tbl_pompa WHERE id_bbm ='B-002'", sqlConnection);// ambil solar
+            
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                jumlahSolar = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+
+            sqlCmd = new SqlCommand("SELECT COUNT(*) FROM tbl_pompa WHERE id_bbm ='B-003'", sqlConnection);// ambil premium
+            
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                jumlahPremium = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+
+            sqlCmd = new SqlCommand("SELECT COUNT(*) FROM tbl_pompa WHERE id_bbm ='B-004'", sqlConnection);// ambil pertamax
+            
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                jumlahPertamax = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+
+            //pertalite
+            if(jumlahPertalite == 0)
+            {
+                comboBox_namapompa_pertalite1.Enabled = false;
+                comboBox_namapompa_pertalite2.Enabled = false;
+                comboBox_namapompa_pertalite3.Enabled = false;
+                comboBox_namapompa_pertalite4.Enabled = false;
+            }
+            else if (jumlahPertalite == 1)
+            {
+                comboBox_namapompa_pertalite1.Enabled = true;
+                comboBox_namapompa_pertalite2.Enabled = false;
+                comboBox_namapompa_pertalite3.Enabled = false;
+                comboBox_namapompa_pertalite4.Enabled = false;
+            }
+            else if (jumlahPertalite == 2)
+            {
+                comboBox_namapompa_pertalite1.Enabled = true;
+                comboBox_namapompa_pertalite2.Enabled = true;
+                comboBox_namapompa_pertalite3.Enabled = false;
+                comboBox_namapompa_pertalite4.Enabled = false;
+            }
+            else if (jumlahPertalite == 3)
+            {
+                comboBox_namapompa_pertalite1.Enabled = true;
+                comboBox_namapompa_pertalite2.Enabled = true;
+                comboBox_namapompa_pertalite3.Enabled = true;
+                comboBox_namapompa_pertalite4.Enabled = false;
+            }
+            else if (jumlahPertalite == 4)
+            {
+                comboBox_namapompa_pertalite1.Enabled = true;
+                comboBox_namapompa_pertalite2.Enabled = true;
+                comboBox_namapompa_pertalite3.Enabled = true;
+                comboBox_namapompa_pertalite4.Enabled = true;
+            }
+
+            //pertamax
+            if (jumlahPertamax == 0)
+            {
+                comboBox_namapompa_pertamax1.Enabled = false;
+                comboBox_namapompa_pertamax2.Enabled = false;
+                comboBox_namapompa_pertamax3.Enabled = false;
+                comboBox_namapompa_pertamax4.Enabled = false;
+            }
+            else if (jumlahPertamax == 1)
+            {
+                comboBox_namapompa_pertamax1.Enabled = true;
+                comboBox_namapompa_pertamax2.Enabled = false;
+                comboBox_namapompa_pertamax3.Enabled = false;
+                comboBox_namapompa_pertamax4.Enabled = false;
+            }
+
+            else if (jumlahPertamax == 2)
+            {
+                comboBox_namapompa_pertamax1.Enabled = true;
+                comboBox_namapompa_pertamax2.Enabled = true;
+                comboBox_namapompa_pertamax3.Enabled = false;
+                comboBox_namapompa_pertamax4.Enabled = false;
+            }
+            else if (jumlahPertamax == 3)
+            {
+                comboBox_namapompa_pertamax1.Enabled = true;
+                comboBox_namapompa_pertamax2.Enabled = true;
+                comboBox_namapompa_pertamax3.Enabled = true;
+                comboBox_namapompa_pertamax4.Enabled = false;
+            }
+            else if (jumlahPertamax == 4)
+            {
+                comboBox_namapompa_pertamax1.Enabled = true;
+                comboBox_namapompa_pertamax2.Enabled = true;
+                comboBox_namapompa_pertamax3.Enabled = true;
+                comboBox_namapompa_pertamax4.Enabled = true;
+            }
+            //premoium
+            if (jumlahPremium == 0)
+            {
+                comboBox_namapompa_premium1.Enabled = false;
+                comboBox_namapompa_premium2.Enabled = false;
+                comboBox_namapompa_premium3.Enabled = false;
+                comboBox_namapompa_premium4.Enabled = false;
+            }
+            else if (jumlahPremium == 1)
+            {
+                comboBox_namapompa_premium1.Enabled = true;
+                comboBox_namapompa_premium2.Enabled = false;
+                comboBox_namapompa_premium3.Enabled = false;
+                comboBox_namapompa_premium4.Enabled = false;
+            }
+            else if (jumlahPremium == 2)
+            {
+                comboBox_namapompa_premium1.Enabled = true;
+                comboBox_namapompa_premium2.Enabled = true;
+                comboBox_namapompa_premium3.Enabled = false;
+                comboBox_namapompa_premium4.Enabled = false;
+            }
+            else if (jumlahPremium == 3)
+            {
+                comboBox_namapompa_premium1.Enabled = true;
+                comboBox_namapompa_premium2.Enabled = true;
+                comboBox_namapompa_premium3.Enabled = true;
+                comboBox_namapompa_premium4.Enabled = false;
+            }
+            else if (jumlahPremium == 4)
+            {
+                comboBox_namapompa_premium1.Enabled = true;
+                comboBox_namapompa_premium2.Enabled = true;
+                comboBox_namapompa_premium3.Enabled = true;
+                comboBox_namapompa_premium4.Enabled = true;
+            }
+            //solar
+            if (jumlahSolar == 0)
+            {
+                comboBox_namapompa_solat1.Enabled = false;
+                comboBox_namapompa_solat2.Enabled = false;
+                comboBox_namapompa_solat3.Enabled = false;
+                comboBox_namapompa_solat4.Enabled = false;
+            }
+            else if (jumlahSolar == 1)
+            {
+                comboBox_namapompa_solat1.Enabled = true;
+                comboBox_namapompa_solat2.Enabled = false;
+                comboBox_namapompa_solat3.Enabled = false;
+                comboBox_namapompa_solat4.Enabled = false;
+            }
+            else if (jumlahSolar == 2)
+            {
+                comboBox_namapompa_solat1.Enabled = true;
+                comboBox_namapompa_solat2.Enabled = true;
+                comboBox_namapompa_solat3.Enabled = false;
+                comboBox_namapompa_solat4.Enabled = false;
+            }
+            else if (jumlahSolar == 3)
+            {
+                comboBox_namapompa_solat1.Enabled = true;
+                comboBox_namapompa_solat2.Enabled = true;
+                comboBox_namapompa_solat3.Enabled = true;
+                comboBox_namapompa_solat4.Enabled = false;
+            }
+            else if (jumlahSolar == 4)
+            {
+                comboBox_namapompa_solat1.Enabled = true;
+                comboBox_namapompa_solat2.Enabled = true;
+                comboBox_namapompa_solat3.Enabled = true;
+                comboBox_namapompa_solat4.Enabled = true;
+            }
+
+
+        }//disabledCombo
+
+        public void isicombobox()
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlCmd = new SqlCommand("SELECT * FROM tbl_pompa WHERE id_bbm='B-001'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertalite1.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertalite2.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertalite3.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertalite4.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+            //solar
+
+            sqlCmd = new SqlCommand("SELECT * FROM tbl_pompa WHERE id_bbm='B-002'", sqlConnection);// ambil solar
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_solat1.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_solat2.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_solat3.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_solat4.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            //premium
+            sqlCmd = new SqlCommand("SELECT * FROM tbl_pompa WHERE id_bbm='B-003'", sqlConnection);// ambil premium
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_premium1.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_premium2.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_premium3.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_premium4.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            //pertamax
+            sqlCmd = new SqlCommand("SELECT * FROM tbl_pompa WHERE id_bbm='B-004'", sqlConnection);// ambil pertamax
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertamax1.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertamax2.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertamax3.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+
+            sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                comboBox_namapompa_pertamax4.Items.Add(sqlReader["nama_pompa"].ToString());
+            }
+            sqlReader.Close();
+        }
+
         public void clear()
         {
-            textBox_idTransaksi.Clear();
+           // textBox_idTransaksi.Clear();
             textBox_cari.Clear();
             //pertalite
-            comboBox_namapompa_pertalite1.SelectedItem = "MESIN POMPA PERTALITE";
-            comboBox_namapompa_pertalite2.SelectedItem = "MESIN POMPA PERTALITE";
-            comboBox_namapompa_pertalite3.SelectedItem = "MESIN POMPA PERTALITE";
-            comboBox_namapompa_pertalite4.SelectedItem = "MESIN POMPA PERTALITE";
+            comboBox_namapompa_pertalite1.Enabled = false;
+            comboBox_namapompa_pertalite2.Enabled = false;
+            comboBox_namapompa_pertalite3.Enabled = false;
+            comboBox_namapompa_pertalite4.Enabled = false;
+            comboBox_namapompa_pertalite1.Text = "";
+            comboBox_namapompa_pertalite2.Text = "";
+            comboBox_namapompa_pertalite3.Text = "";
+            comboBox_namapompa_pertalite4.Text = "";
             textBox_standAwalpertalitePompa1.Clear();
             textBox_standAwalpertalitePompa2.Clear();
             textBox_standAwalpertalitePompa3.Clear();
@@ -93,10 +470,14 @@ namespace SPBU.GUI
             textBox_totalPertalitePompa3.Clear();
             textBox_totalPertalitePompa4.Clear();
             //pertamax
-            comboBox_namapompa_pertamax1.SelectedItem = "MESIN POMPA PERTAMAX";
-            comboBox_namapompa_pertamax2.SelectedItem = "MESIN POMPA PERTAMAX";
-            comboBox_namapompa_pertamax3.SelectedItem = "MESIN POMPA PERTAMAX";
-            comboBox_namapompa_pertamax4.SelectedItem = "MESIN POMPA PERTAMAX";
+            comboBox_namapompa_pertamax1.Enabled = false;
+            comboBox_namapompa_pertamax2.Enabled = false;
+            comboBox_namapompa_pertamax3.Enabled = false;
+            comboBox_namapompa_pertamax4.Enabled = false;
+            comboBox_namapompa_pertamax1.Text = "";
+            comboBox_namapompa_pertamax2.Text = "";
+            comboBox_namapompa_pertamax3.Text = "";
+            comboBox_namapompa_pertamax4.Text = "";
             textBox_standAwalPertamaxPompa1.Clear();
             textBox_standAwalPertamaxPompa2.Clear();
             textBox_standAwalPertamaxPompa3.Clear();
@@ -110,10 +491,14 @@ namespace SPBU.GUI
             textBox_totalPertamaxPompa3.Clear();
             textBox_totalPertamaxPompa4.Clear();
             //solar
-            comboBox_namapompa_solat1.SelectedItem = "MESIN POMPA SOLAR";
-            comboBox_namapompa_solat2.SelectedItem = "MESIN POMPA SOLAR";
-            comboBox_namapompa_solat3.SelectedItem = "MESIN POMPA SOLAR";
-            comboBox_namapompa_solat4.SelectedItem = "MESIN POMPA SOLAR";
+            comboBox_namapompa_solat1.Enabled = false;
+            comboBox_namapompa_solat2.Enabled = false;
+            comboBox_namapompa_solat3.Enabled = false;
+            comboBox_namapompa_solat4.Enabled = false;
+            comboBox_namapompa_solat1.Text = "";
+            comboBox_namapompa_solat2.Text = "";
+            comboBox_namapompa_solat3.Text = "";
+            comboBox_namapompa_solat4.Text = "";
             textBox_standAwalSolarPompa1.Clear();
             textBox_standAwalSolarPompa2.Clear();
             textBox_standAwalSolarPompa3.Clear();
@@ -127,10 +512,14 @@ namespace SPBU.GUI
             textBox_totalSolarPompa3.Clear();
             textBox_totalSolarPompa4.Clear();
             //premium
-            comboBox_namapompa_premium1.SelectedItem = "MESIN POMPA PREMIUM";
-            comboBox_namapompa_premium2.SelectedItem = "MESIN POMPA PREMIUM";
-            comboBox_namapompa_premium3.SelectedItem = "MESIN POMPA PREMIUM";
-            comboBox_namapompa_premium4.SelectedItem = "MESIN POMPA PREMIUM";
+            comboBox_namapompa_premium1.Enabled = false;
+            comboBox_namapompa_premium2.Enabled = false;
+            comboBox_namapompa_premium3.Enabled = false;
+            comboBox_namapompa_premium4.Enabled = false;
+            comboBox_namapompa_premium1.Text = "";
+            comboBox_namapompa_premium2.Text = "";
+            comboBox_namapompa_premium3.Text = "";
+            comboBox_namapompa_premium4.Text = "";
             textBox_standAwalPremiumPompa1.Clear();
             textBox_standAwalPremiumPompa2.Clear();
             textBox_standAwalPremiumPompa3.Clear();
@@ -152,7 +541,7 @@ namespace SPBU.GUI
             textBox_cari.Enabled = true;
             button_simpan.Enabled = param1;
             button_hapus.Enabled = param2;
-            textBox_idTransaksi.Enabled = param1;
+            textBox_idTransaksi.Enabled = false;
             //pertalite
             comboBox_namapompa_pertalite1.Enabled = param1;
             comboBox_namapompa_pertalite2.Enabled = param1;
@@ -181,8 +570,8 @@ namespace SPBU.GUI
             textBox_standAwalPertamaxPompa4.Enabled = false;
             textBox_standAkhirPertamaxPompa1.Enabled = param1;
             textBox_standAkhirPertamaxPompa2.Enabled = param1;
-            textBox_standAkhirPertamaxPompa3.Enabled = false;
-            textBox_standAkhirPertamaxPompa4.Enabled = false;
+            textBox_standAkhirPertamaxPompa3.Enabled = param1;
+            textBox_standAkhirPertamaxPompa4.Enabled = param1;
             textBox_totalPertamaxPompa1.Enabled = false;
             textBox_totalPertamaxPompa2.Enabled = false;
             textBox_totalPertamaxPompa3.Enabled = false;
@@ -224,7 +613,202 @@ namespace SPBU.GUI
 
             dateTimePicker_tglTransaksi.Enabled = param2;
         }//aturTombol 
+        string ambilidpompa(string namapompa)
+        {
+            string id=""; 
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlCmd = new SqlCommand("select id_pompa from tbl_pompa where nama_pompa = '"+namapompa+"'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
+            while (sqlReader.Read())
+            {
+                id = Convert.ToString(sqlReader[0].ToString());
+               // MessageBox.Show("" + id);
+            }
+            sqlReader.Close();
+            MessageBox.Show("" + id);
+            return id;
+        }
+        private void insertcombobox()
+        {
+            //premium
+            if (comboBox_namapompa_premium1.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
+
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_premium1.Text) + "','B-003','"  + textBox_standAwalPremiumPompa1.Text + "','" + textBox_standAkhirPremiumPompa1.Text + "','" + hargapremium + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_premium2.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_premium2.Text) + "','B-003','" + textBox_standAwalPremiumPompa2.Text + "','" + textBox_standAkhirPremiumPompa2.Text + "','" + hargapremium + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+             if (comboBox_namapompa_premium3.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','"+ambilidpompa(comboBox_namapompa_premium3.Text)+"','B-003','"  + textBox_standAwalPremiumPompa3.Text + "','" + textBox_standAkhirPremiumPompa3.Text + "','" + hargapremium + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+             if (comboBox_namapompa_premium4.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_premium1.Text) + "','B-003','" + textBox_standAwalPremiumPompa4.Text + "','" + textBox_standAkhirPremiumPompa4.Text + "','" + hargapremium + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            //pertamax
+             if (comboBox_namapompa_pertamax1.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax1.Text) + "','B-004','" + textBox_standAwalPertamaxPompa1.Text + "','" + textBox_standAkhirPertamaxPompa1.Text + "','" + hargapertamax + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             } if (comboBox_namapompa_pertamax2.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax2.Text) + "','B-004','" + textBox_standAwalPertamaxPompa2.Text + "','" + textBox_standAkhirPertamaxPompa2.Text + "','" + hargapertamax + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_pertamax3.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax3.Text) + "','B-004','" + textBox_standAwalPertamaxPompa3.Text + "','" + textBox_standAkhirPertamaxPompa3.Text + "','" + hargapertamax + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_pertamax4.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax4.Text) + "','B-004','" + textBox_standAwalPertamaxPompa4.Text + "','" + textBox_standAkhirPertamaxPompa4.Text + "','" + hargapertamax + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             //solar
+             if (comboBox_namapompa_solat1.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat1.Text) + "','B-002','" + textBox_standAwalSolarPompa1.Text + "','" + textBox_standAkhirSolarPompa1.Text + "','" + hargasolar + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_solat2.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat2.Text) + "','B-002','" + textBox_standAwalSolarPompa2.Text + "','" + textBox_standAkhirSolarPompa2.Text + "','" + hargasolar + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_solat3.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat3.Text) + "','B-002','"  + textBox_standAwalSolarPompa3.Text + "','" + textBox_standAkhirSolarPompa3.Text + "','" + hargasolar + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_solat4.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat4.Text) + "','B-002','" + textBox_standAwalSolarPompa4.Text + "','" + textBox_standAkhirSolarPompa4.Text + "','" + hargasolar + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             //pertalite
+             if (comboBox_namapompa_pertalite1.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite1.Text) + "','B-001','" + textBox_standAwalpertalitePompa1.Text + "','" + textBox_standAkhirPertalitePompa1.Text + "','" + hargapertalite + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_pertalite2.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite2.Text) + "','B-001','" + textBox_standAwalpertalitePompa2.Text + "','" + textBox_standAkhirPertalitePompa2.Text + "','" + hargapertalite + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_pertalite3.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite3.Text) + "','B-001','"+ textBox_standAwalpertalitePompa3.Text + "','" + textBox_standAkhirPertalitePompa3.Text + "','" + hargapertalite + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+             if (comboBox_namapompa_pertalite4.Text != "")
+             {
+                 SqlCommand command = new SqlCommand();
+                 command.Connection = konn.GetConn();
+                 command.Connection.Open();
+                 command.CommandType = CommandType.Text;
+
+                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite4.Text) + "','B-001','" + textBox_standAwalpertalitePompa4.Text + "','" + textBox_standAkhirPertalitePompa4.Text + "','" + hargapertalite + "')";
+                 command.ExecuteNonQuery();
+                 command.Connection.Close(); //pesan berhasil 
+             }
+        }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -237,13 +821,15 @@ namespace SPBU.GUI
 
         private void button_baru_Click(object sender, EventArgs e)
         {
+            textBox_idTransaksi.Text = AutoNumber.Auto("tbl_transaksi", "T", "id_transaksi");
             clear();
             aturTombol(true, false);
+            disabledCombo();
         }
 
         private void button_hapus_Click(object sender, EventArgs e)
         {
-            string id = id_transaksi_detail;
+            string id = textBox_idTransaksi.Text;
             DialogResult akses = MessageBox.Show("Apakah data Ini akan dihapus??", "Informasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (akses == DialogResult.Yes)
             { //askes ke  controller 
@@ -252,7 +838,12 @@ namespace SPBU.GUI
                 command.Connection = konn.GetConn();
                 command.Connection.Open();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "DELETE FROM tbl_transaksi_detail WHERE id_transaksi_detail='" + id + "'";
+                command.CommandText = "DELETE FROM tbl_transaksi_detail WHERE id_transaksi='" + id + "'";
+                command.ExecuteNonQuery();
+                command.Connection.Close();//pesan berhasil 
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "DELETE FROM tbl_transaksi WHERE id_transaksi='" + id + "'";
                 command.ExecuteNonQuery();
                 command.Connection.Close();//pesan berhasil 
                 MessageBox.Show("Data Berhasil Dihapus", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
@@ -288,14 +879,15 @@ namespace SPBU.GUI
         {
             try
             {
-
+                textBox_idTransaksi.Text = AutoNumber.Auto("tbl_transaksi", "T", "id_transaksi");
                 SqlCommand command = new SqlCommand();
                 command.Connection = konn.GetConn();
                 command.Connection.Open();
                 command.CommandType = CommandType.Text;
-              //  command.CommandText = "INSERT INTO tbl_penerimaan VALUES('" + textBox_idpenerimaan.Text + "','" + id_bbm_penerimaan + "','" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "','" + textBox_jumlahPenerimaan.Text + "')";
+                command.CommandText = "INSERT INTO tbl_transaksi VALUES('" + textBox_idTransaksi.Text + "','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") +"')";
                 command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil 
+                insertcombobox();
                 MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
                 loadDaftar(); //memanggil bersih data 
                 clear();
@@ -310,7 +902,628 @@ namespace SPBU.GUI
 
         private void comboBox_namapompa_pertalite1_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+                SqlConnection sqlConnection = konn.GetConn();
+                SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertalite1.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+                sqlConnection.Open();
+                SqlDataReader sqlReader = sqlli.ExecuteReader();
+                textBox_standAwalpertalitePompa1.Text = "0";
+                while (sqlReader.Read())
+                {
+                    textBox_standAwalpertalitePompa1.Text = (sqlReader["stand_meter_akhir"].ToString());
+                }
+                sqlReader.Close();
+
+            }
+
+        private void comboBox_namapompa_pertalite2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertalite2.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalpertalitePompa2.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalpertalitePompa2.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+
+        }
+
+        private void comboBox_namapompa_pertalite3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertalite3.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalpertalitePompa3.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalpertalitePompa3.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+
+        }
+
+        private void comboBox_namapompa_pertalite4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertalite4.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalpertalitePompa4.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalpertalitePompa4.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+
+        }
+
+        private void comboBox_namapompa_solat1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_solat1.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalSolarPompa1.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalSolarPompa1.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+
+        }
+
+        private void comboBox_namapompa_solat2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_solat2.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalSolarPompa2.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalSolarPompa2.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+        }
+
+        private void comboBox_namapompa_premium1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_premium1.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalPremiumPompa1.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalPremiumPompa1.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+        }
+
+        private void comboBox_namapompa_premium2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_premium2.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalPremiumPompa2.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalPremiumPompa2.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+        }
+
+        private void comboBox_namapompa_pertamax1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertamax1.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalPertamaxPompa1.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalPertamaxPompa1.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+        }
+
+        private void comboBox_namapompa_pertamax2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertamax2.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalPertamaxPompa2.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalPertamaxPompa2.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+        }
+
+        private void comboBox_namapompa_pertamax3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertamax3.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalPertamaxPompa3.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalPertamaxPompa3.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+        }
+
+        private void comboBox_namapompa_pertamax4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertamax4.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalPertamaxPompa4.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalPertamaxPompa4.Text = (sqlReader["stand_meter_akhir"].ToString());
+            }
+            sqlReader.Close();
+        }
+
+        private void textBox_standAkhirPertalitePompa1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertalitePompa1.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total=0;
+                    total = Convert.ToInt64(textBox_standAkhirPertalitePompa1.Text) - Convert.ToInt64(textBox_standAwalpertalitePompa1.Text);
+                    if(total >=0)
+                    {
+                        textBox_totalPertalitePompa1.Text = total.ToString();
+                    }
+                   
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPertalitePompa2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertalitePompa2.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPertalitePompa2.Text) - Convert.ToInt64(textBox_standAwalpertalitePompa2.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPertalitePompa2.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPertalitePompa3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertalitePompa3.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPertalitePompa3.Text) - Convert.ToInt64(textBox_standAwalpertalitePompa3.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPertalitePompa3.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPertalitePompa4_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertalitePompa4.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPertalitePompa4.Text) - Convert.ToInt64(textBox_standAwalpertalitePompa4.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPertalitePompa4.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirSolarPompa1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirSolarPompa1.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirSolarPompa1.Text) - Convert.ToInt64(textBox_standAwalSolarPompa1.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalSolarPompa1.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirSolarPompa2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirSolarPompa2.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirSolarPompa2.Text) - Convert.ToInt64(textBox_standAwalSolarPompa2.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalSolarPompa2.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirSolarPompa3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirSolarPompa3.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirSolarPompa3.Text) - Convert.ToInt64(textBox_standAwalSolarPompa3.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalSolarPompa3.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirSolarPompa4_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirSolarPompa4.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirSolarPompa4.Text) - Convert.ToInt64(textBox_standAwalSolarPompa4.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalSolarPompa4.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAwalPremiumPompa1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_standAkhirPremiumPompa1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPremiumPompa1.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPremiumPompa1.Text) - Convert.ToInt64(textBox_standAwalPremiumPompa1.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPremiumPompa1.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPremiumPompa2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPremiumPompa2.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPremiumPompa2.Text) - Convert.ToInt64(textBox_standAwalPremiumPompa2.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPremiumPompa2.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPremiumPompa3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPremiumPompa3.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPremiumPompa3.Text) - Convert.ToInt64(textBox_standAwalPremiumPompa3.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPremiumPompa3.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPremiumPompa4_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPremiumPompa4.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPremiumPompa4.Text) - Convert.ToInt64(textBox_standAwalPremiumPompa4.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPremiumPompa4.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPertamaxPompa1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertamaxPompa1.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPertamaxPompa1.Text) - Convert.ToInt64(textBox_standAwalPertamaxPompa1.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPertamaxPompa1.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPertamaxPompa2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertamaxPompa2.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPertamaxPompa2.Text) - Convert.ToInt64(textBox_standAwalPertamaxPompa2.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPertamaxPompa2.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPertamaxPompa3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertamaxPompa3.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPertamaxPompa3.Text) - Convert.ToInt64(textBox_standAwalPertamaxPompa3.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPertamaxPompa3.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_standAkhirPertamaxPompa4_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_standAkhirPertamaxPompa4.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    long total = 0;
+                    total = Convert.ToInt64(textBox_standAkhirPertamaxPompa4.Text) - Convert.ToInt64(textBox_standAwalPertamaxPompa4.Text);
+                    if (total >= 0)
+                    {
+                        textBox_totalPertamaxPompa4.Text = total.ToString();
+                    }
+
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_cari_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_cari.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = konn.GetConn();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM vtransaksi WHERE id_transaksi LIKE'%" + textBox_cari.Text + "%' OR nama_pompa LIKE'%" + textBox_cari.Text + "%'";
+                    SqlDataAdapter data = new SqlDataAdapter(command);
+                    data.Fill(dts, "vtransaksi");
+                    dataGridView_transaksi.DataSource = dts;
+                    dataGridView_transaksi.DataMember = "vtransaksi";
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
+
+        private void textBox_idTransaksi_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

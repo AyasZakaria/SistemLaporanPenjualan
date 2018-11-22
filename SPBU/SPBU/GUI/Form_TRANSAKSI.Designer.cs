@@ -135,6 +135,7 @@
             this.textBox_idTransaksi.Name = "textBox_idTransaksi";
             this.textBox_idTransaksi.Size = new System.Drawing.Size(148, 22);
             this.textBox_idTransaksi.TabIndex = 3;
+            this.textBox_idTransaksi.TextChanged += new System.EventHandler(this.textBox_idTransaksi_TextChanged);
             // 
             // label1
             // 
@@ -212,6 +213,7 @@
             this.textBox_standAkhirPertalitePompa4.Name = "textBox_standAkhirPertalitePompa4";
             this.textBox_standAkhirPertalitePompa4.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertalitePompa4.TabIndex = 46;
+            this.textBox_standAkhirPertalitePompa4.TextChanged += new System.EventHandler(this.textBox_standAkhirPertalitePompa4_TextChanged);
             // 
             // textBox_standAkhirPertalitePompa3
             // 
@@ -220,6 +222,7 @@
             this.textBox_standAkhirPertalitePompa3.Name = "textBox_standAkhirPertalitePompa3";
             this.textBox_standAkhirPertalitePompa3.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertalitePompa3.TabIndex = 45;
+            this.textBox_standAkhirPertalitePompa3.TextChanged += new System.EventHandler(this.textBox_standAkhirPertalitePompa3_TextChanged);
             // 
             // textBox_standAkhirPertalitePompa2
             // 
@@ -228,6 +231,7 @@
             this.textBox_standAkhirPertalitePompa2.Name = "textBox_standAkhirPertalitePompa2";
             this.textBox_standAkhirPertalitePompa2.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertalitePompa2.TabIndex = 44;
+            this.textBox_standAkhirPertalitePompa2.TextChanged += new System.EventHandler(this.textBox_standAkhirPertalitePompa2_TextChanged);
             // 
             // label16
             // 
@@ -246,6 +250,7 @@
             this.textBox_standAkhirPertalitePompa1.Name = "textBox_standAkhirPertalitePompa1";
             this.textBox_standAkhirPertalitePompa1.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertalitePompa1.TabIndex = 42;
+            this.textBox_standAkhirPertalitePompa1.TextChanged += new System.EventHandler(this.textBox_standAkhirPertalitePompa1_TextChanged);
             // 
             // textBox_totalPertalitePompa4
             // 
@@ -368,6 +373,7 @@
             this.comboBox_namapompa_pertalite4.Name = "comboBox_namapompa_pertalite4";
             this.comboBox_namapompa_pertalite4.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_pertalite4.TabIndex = 89;
+            this.comboBox_namapompa_pertalite4.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_pertalite4_SelectedIndexChanged);
             // 
             // comboBox_namapompa_pertalite3
             // 
@@ -376,6 +382,7 @@
             this.comboBox_namapompa_pertalite3.Name = "comboBox_namapompa_pertalite3";
             this.comboBox_namapompa_pertalite3.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_pertalite3.TabIndex = 88;
+            this.comboBox_namapompa_pertalite3.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_pertalite3_SelectedIndexChanged);
             // 
             // comboBox_namapompa_pertalite2
             // 
@@ -384,6 +391,7 @@
             this.comboBox_namapompa_pertalite2.Name = "comboBox_namapompa_pertalite2";
             this.comboBox_namapompa_pertalite2.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_pertalite2.TabIndex = 87;
+            this.comboBox_namapompa_pertalite2.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_pertalite2_SelectedIndexChanged);
             // 
             // comboBox_namapompa_pertalite1
             // 
@@ -447,6 +455,7 @@
             this.comboBox_namapompa_solat2.Name = "comboBox_namapompa_solat2";
             this.comboBox_namapompa_solat2.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_solat2.TabIndex = 87;
+            this.comboBox_namapompa_solat2.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_solat2_SelectedIndexChanged);
             // 
             // comboBox_namapompa_solat1
             // 
@@ -455,6 +464,7 @@
             this.comboBox_namapompa_solat1.Name = "comboBox_namapompa_solat1";
             this.comboBox_namapompa_solat1.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_solat1.TabIndex = 86;
+            this.comboBox_namapompa_solat1.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_solat1_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -515,6 +525,7 @@
             this.textBox_standAkhirSolarPompa1.Name = "textBox_standAkhirSolarPompa1";
             this.textBox_standAkhirSolarPompa1.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirSolarPompa1.TabIndex = 42;
+            this.textBox_standAkhirSolarPompa1.TextChanged += new System.EventHandler(this.textBox_standAkhirSolarPompa1_TextChanged);
             // 
             // label8
             // 
@@ -533,6 +544,7 @@
             this.textBox_standAkhirSolarPompa2.Name = "textBox_standAkhirSolarPompa2";
             this.textBox_standAkhirSolarPompa2.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirSolarPompa2.TabIndex = 44;
+            this.textBox_standAkhirSolarPompa2.TextChanged += new System.EventHandler(this.textBox_standAkhirSolarPompa2_TextChanged);
             // 
             // textBox_standAkhirSolarPompa3
             // 
@@ -541,6 +553,7 @@
             this.textBox_standAkhirSolarPompa3.Name = "textBox_standAkhirSolarPompa3";
             this.textBox_standAkhirSolarPompa3.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirSolarPompa3.TabIndex = 45;
+            this.textBox_standAkhirSolarPompa3.TextChanged += new System.EventHandler(this.textBox_standAkhirSolarPompa3_TextChanged);
             // 
             // textBox_standAkhirSolarPompa4
             // 
@@ -549,6 +562,7 @@
             this.textBox_standAkhirSolarPompa4.Name = "textBox_standAkhirSolarPompa4";
             this.textBox_standAkhirSolarPompa4.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirSolarPompa4.TabIndex = 46;
+            this.textBox_standAkhirSolarPompa4.TextChanged += new System.EventHandler(this.textBox_standAkhirSolarPompa4_TextChanged);
             // 
             // textBox_totalSolarPompa1
             // 
@@ -629,6 +643,7 @@
             this.comboBox_namapompa_pertamax4.Name = "comboBox_namapompa_pertamax4";
             this.comboBox_namapompa_pertamax4.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_pertamax4.TabIndex = 89;
+            this.comboBox_namapompa_pertamax4.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_pertamax4_SelectedIndexChanged);
             // 
             // comboBox_namapompa_pertamax3
             // 
@@ -637,6 +652,7 @@
             this.comboBox_namapompa_pertamax3.Name = "comboBox_namapompa_pertamax3";
             this.comboBox_namapompa_pertamax3.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_pertamax3.TabIndex = 88;
+            this.comboBox_namapompa_pertamax3.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_pertamax3_SelectedIndexChanged);
             // 
             // comboBox_namapompa_pertamax2
             // 
@@ -645,6 +661,7 @@
             this.comboBox_namapompa_pertamax2.Name = "comboBox_namapompa_pertamax2";
             this.comboBox_namapompa_pertamax2.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_pertamax2.TabIndex = 87;
+            this.comboBox_namapompa_pertamax2.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_pertamax2_SelectedIndexChanged);
             // 
             // comboBox_namapompa_pertamax1
             // 
@@ -653,6 +670,7 @@
             this.comboBox_namapompa_pertamax1.Name = "comboBox_namapompa_pertamax1";
             this.comboBox_namapompa_pertamax1.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_pertamax1.TabIndex = 86;
+            this.comboBox_namapompa_pertamax1.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_pertamax1_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -713,6 +731,7 @@
             this.textBox_standAkhirPertamaxPompa1.Name = "textBox_standAkhirPertamaxPompa1";
             this.textBox_standAkhirPertamaxPompa1.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertamaxPompa1.TabIndex = 42;
+            this.textBox_standAkhirPertamaxPompa1.TextChanged += new System.EventHandler(this.textBox_standAkhirPertamaxPompa1_TextChanged);
             // 
             // label12
             // 
@@ -731,6 +750,7 @@
             this.textBox_standAkhirPertamaxPompa2.Name = "textBox_standAkhirPertamaxPompa2";
             this.textBox_standAkhirPertamaxPompa2.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertamaxPompa2.TabIndex = 44;
+            this.textBox_standAkhirPertamaxPompa2.TextChanged += new System.EventHandler(this.textBox_standAkhirPertamaxPompa2_TextChanged);
             // 
             // textBox_standAkhirPertamaxPompa3
             // 
@@ -739,6 +759,7 @@
             this.textBox_standAkhirPertamaxPompa3.Name = "textBox_standAkhirPertamaxPompa3";
             this.textBox_standAkhirPertamaxPompa3.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertamaxPompa3.TabIndex = 45;
+            this.textBox_standAkhirPertamaxPompa3.TextChanged += new System.EventHandler(this.textBox_standAkhirPertamaxPompa3_TextChanged);
             // 
             // textBox_standAkhirPertamaxPompa4
             // 
@@ -747,6 +768,7 @@
             this.textBox_standAkhirPertamaxPompa4.Name = "textBox_standAkhirPertamaxPompa4";
             this.textBox_standAkhirPertamaxPompa4.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPertamaxPompa4.TabIndex = 46;
+            this.textBox_standAkhirPertamaxPompa4.TextChanged += new System.EventHandler(this.textBox_standAkhirPertamaxPompa4_TextChanged);
             // 
             // textBox_totalPertamaxPompa1
             // 
@@ -843,6 +865,7 @@
             this.comboBox_namapompa_premium2.Name = "comboBox_namapompa_premium2";
             this.comboBox_namapompa_premium2.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_premium2.TabIndex = 87;
+            this.comboBox_namapompa_premium2.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_premium2_SelectedIndexChanged);
             // 
             // comboBox_namapompa_premium1
             // 
@@ -851,6 +874,7 @@
             this.comboBox_namapompa_premium1.Name = "comboBox_namapompa_premium1";
             this.comboBox_namapompa_premium1.Size = new System.Drawing.Size(302, 21);
             this.comboBox_namapompa_premium1.TabIndex = 86;
+            this.comboBox_namapompa_premium1.SelectedIndexChanged += new System.EventHandler(this.comboBox_namapompa_premium1_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -869,6 +893,7 @@
             this.textBox_standAwalPremiumPompa1.Name = "textBox_standAwalPremiumPompa1";
             this.textBox_standAwalPremiumPompa1.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAwalPremiumPompa1.TabIndex = 12;
+            this.textBox_standAwalPremiumPompa1.TextChanged += new System.EventHandler(this.textBox_standAwalPremiumPompa1_TextChanged);
             // 
             // label15
             // 
@@ -911,6 +936,7 @@
             this.textBox_standAkhirPremiumPompa1.Name = "textBox_standAkhirPremiumPompa1";
             this.textBox_standAkhirPremiumPompa1.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPremiumPompa1.TabIndex = 42;
+            this.textBox_standAkhirPremiumPompa1.TextChanged += new System.EventHandler(this.textBox_standAkhirPremiumPompa1_TextChanged);
             // 
             // label18
             // 
@@ -929,6 +955,7 @@
             this.textBox_standAkhirPremiumPompa2.Name = "textBox_standAkhirPremiumPompa2";
             this.textBox_standAkhirPremiumPompa2.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPremiumPompa2.TabIndex = 44;
+            this.textBox_standAkhirPremiumPompa2.TextChanged += new System.EventHandler(this.textBox_standAkhirPremiumPompa2_TextChanged);
             // 
             // textBox_standAkhirPremiumPompa3
             // 
@@ -937,6 +964,7 @@
             this.textBox_standAkhirPremiumPompa3.Name = "textBox_standAkhirPremiumPompa3";
             this.textBox_standAkhirPremiumPompa3.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPremiumPompa3.TabIndex = 45;
+            this.textBox_standAkhirPremiumPompa3.TextChanged += new System.EventHandler(this.textBox_standAkhirPremiumPompa3_TextChanged);
             // 
             // textBox_standAkhirPremiumPompa4
             // 
@@ -945,6 +973,7 @@
             this.textBox_standAkhirPremiumPompa4.Name = "textBox_standAkhirPremiumPompa4";
             this.textBox_standAkhirPremiumPompa4.Size = new System.Drawing.Size(113, 22);
             this.textBox_standAkhirPremiumPompa4.TabIndex = 46;
+            this.textBox_standAkhirPremiumPompa4.TextChanged += new System.EventHandler(this.textBox_standAkhirPremiumPompa4_TextChanged);
             // 
             // textBox_totalPremiumPompa1
             // 
@@ -1005,6 +1034,7 @@
             this.textBox_cari.Name = "textBox_cari";
             this.textBox_cari.Size = new System.Drawing.Size(174, 22);
             this.textBox_cari.TabIndex = 90;
+            this.textBox_cari.TextChanged += new System.EventHandler(this.textBox_cari_TextChanged);
             // 
             // Form_TRANSAKSI
             // 

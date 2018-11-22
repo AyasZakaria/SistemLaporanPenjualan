@@ -81,7 +81,29 @@ namespace SPBU.GUI
 
         private void textBox_cari_TextChanged(object sender, EventArgs e)
         {
+            if (textBox_cari.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = konn.GetConn();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM vpenerimaan WHERE id_penerimaan LIKE'%" + textBox_cari.Text + "%' OR nama_bbm LIKE'%" + textBox_cari.Text + "%'";
+                    SqlDataAdapter data = new SqlDataAdapter(command);
+                    data.Fill(dts, "vpenerimaan");
+                    dataGridView_pernerimaan.DataSource = dts;
+                    dataGridView_pernerimaan.DataMember = "vpenerimaan";
+                }//try
+                catch (SqlException)
+                {
 
+                }//catch 
+            }//else
         }
 
         private void button_baru_Click(object sender, EventArgs e)

@@ -171,5 +171,32 @@ namespace SPBU.GUI
                 clear();
             }//if
         }
+
+        private void textBox_cari_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_cari.Text == "")
+            {
+                loadDaftar();
+            }//if
+            else
+            {
+                DataSet dts = new DataSet();
+                try
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = konn.GetConn();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT * FROM tbl_pengeluaran WHERE id_pengeluaran LIKE'%" + textBox_cari.Text + "%' OR deskripsi LIKE'%" + textBox_cari.Text + "%'";
+                    SqlDataAdapter data = new SqlDataAdapter(command);
+                    data.Fill(dts, "tbl_pengeluaran");
+                    dataGridView_pengeluaran.DataSource = dts;
+                    dataGridView_pengeluaran.DataMember = "tbl_pengeluaran";
+                }//try
+                catch (SqlException)
+                {
+
+                }//catch 
+            }//else
+        }
     }
 }
