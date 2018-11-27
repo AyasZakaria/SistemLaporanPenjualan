@@ -56,6 +56,18 @@
     <Compile Include="GUI\Dialog_Pompa.Designer.cs">
       <DependentUpon>Dialog_Pompa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Dialog_TransaksiPerbulan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialog_TransaksiPerbulan.Designer.cs">
+      <DependentUpon>Dialog_TransaksiPerbulan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Dialog_TransaksiPertanggal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Dialog_TransaksiPertanggal.Designer.cs">
+      <DependentUpon>Dialog_TransaksiPertanggal.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Form_BBM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Dialog_Pompa.resx">
       <DependentUpon>Dialog_Pompa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialog_TransaksiPerbulan.resx">
+      <DependentUpon>Dialog_TransaksiPerbulan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Dialog_TransaksiPertanggal.resx">
+      <DependentUpon>Dialog_TransaksiPertanggal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form_BBM.resx">
       <DependentUpon>Form_BBM.cs</DependentUpon>

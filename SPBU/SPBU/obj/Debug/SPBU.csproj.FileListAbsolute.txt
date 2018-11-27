@@ -46,3 +46,5 @@ D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_TRANSAKSI.resources
 D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Dialog_BBM.resources
 D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_PENERIMAAN.resources
 D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Dialog_Pompa.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Dialog_TransaksiPerbulan.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Dialog_TransaksiPertanggal.resources
