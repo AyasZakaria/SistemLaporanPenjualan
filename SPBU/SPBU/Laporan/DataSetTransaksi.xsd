@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetTransaksi" targetNamespace="http://tempuri.org/DataSetTransaksi.xsd" xmlns:mstns="http://tempuri.org/DataSetTransaksi.xsd" xmlns="http://tempuri.org/DataSetTransaksi.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="db_SPBUConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="db_SPBUConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SPBU.Properties.Settings.GlobalReference.Default.db_SPBUConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTableTransaksiTableAdapter" GeneratorDataComponentClassName="DataTableTransaksiTableAdapter" Name="DataTableTransaksi" UserDataComponentName="DataTableTransaksiTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="db_SPBUConnectionString (Settings)" DbObjectName="db_SPBU.dbo.tbl_pengeluaran" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        id_pengeluaran, deskripsi, jumlah_pengeluaran, tgl_pengeluaran, NULL AS Expr1, NULL AS Expr2, NULL AS Expr3, NULL AS Expr4, NULL AS Expr5, NULL AS Expr6, NULL AS Expr7, NULL AS Expr8, NULL AS Expr9, NULL 
+                         AS Expr10, NULL AS Expr11, NULL AS Expr12, NULL AS Expr13, NULL AS Expr14, NULL AS Expr15, NULL AS Expr16, NULL AS Expr17
+FROM            tbl_pengeluaran
+UNION
+SELECT        NULL AS Expr1, NULL AS Expr2, NULL AS Expr3, NULL AS Expr4, id_transaksi, tgl_transaksi, id_transaksi_detail, id_pompa, nama_pompa, id_bbm, nama_bbm, stand_meter_awal, stand_meter_akhir, harga, total, NULL 
+                         AS Expr5, NULL AS Expr6, NULL AS Expr7, NULL AS Expr8, NULL AS Expr9, NULL AS Expr10
+FROM            vtransaksi
+UNION
+SELECT        NULL AS Expr1, NULL AS Expr2, NULL AS Expr3, NULL AS Expr4, NULL AS Expr5, NULL AS Expr6, NULL AS Expr7, NULL AS Expr8, NULL AS Expr9, NULL AS Expr10, NULL AS Expr11, NULL AS Expr12, NULL AS Expr13, NULL 
+                         AS Expr14, NULL AS Expr15, id_stok, id_bbm, nama_bbm, tgl_stok, jumlah_stok, harga
+FROM            vstock</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id_pengeluaran" DataSetColumn="id_pengeluaran" />
+              <Mapping SourceColumn="deskripsi" DataSetColumn="deskripsi" />
+              <Mapping SourceColumn="jumlah_pengeluaran" DataSetColumn="jumlah_pengeluaran" />
+              <Mapping SourceColumn="tgl_pengeluaran" DataSetColumn="tgl_pengeluaran" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="Expr2" DataSetColumn="Expr2" />
+              <Mapping SourceColumn="Expr3" DataSetColumn="Expr3" />
+              <Mapping SourceColumn="Expr4" DataSetColumn="Expr4" />
+              <Mapping SourceColumn="Expr5" DataSetColumn="Expr5" />
+              <Mapping SourceColumn="Expr6" DataSetColumn="Expr6" />
+              <Mapping SourceColumn="Expr7" DataSetColumn="Expr7" />
+              <Mapping SourceColumn="Expr8" DataSetColumn="Expr8" />
+              <Mapping SourceColumn="Expr9" DataSetColumn="Expr9" />
+              <Mapping SourceColumn="Expr10" DataSetColumn="Expr10" />
+              <Mapping SourceColumn="Expr11" DataSetColumn="Expr11" />
+              <Mapping SourceColumn="Expr12" DataSetColumn="Expr12" />
+              <Mapping SourceColumn="Expr13" DataSetColumn="Expr13" />
+              <Mapping SourceColumn="Expr14" DataSetColumn="Expr14" />
+              <Mapping SourceColumn="Expr15" DataSetColumn="Expr15" />
+              <Mapping SourceColumn="Expr16" DataSetColumn="Expr16" />
+              <Mapping SourceColumn="Expr17" DataSetColumn="Expr17" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetTransaksi" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetTransaksi" msprop:Generator_UserDSName="DataSetTransaksi">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableTransaksi" msprop:Generator_TableClassName="DataTableTransaksiDataTable" msprop:Generator_TableVarName="tableDataTableTransaksi" msprop:Generator_TablePropName="DataTableTransaksi" msprop:Generator_RowDeletingName="DataTableTransaksiRowDeleting" msprop:Generator_RowChangingName="DataTableTransaksiRowChanging" msprop:Generator_RowEvHandlerName="DataTableTransaksiRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableTransaksiRowDeleted" msprop:Generator_UserTableName="DataTableTransaksi" msprop:Generator_RowChangedName="DataTableTransaksiRowChanged" msprop:Generator_RowEvArgName="DataTableTransaksiRowChangeEvent" msprop:Generator_RowClassName="DataTableTransaksiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_pengeluaran" msprop:Generator_ColumnVarNameInTable="columnid_pengeluaran" msprop:Generator_ColumnPropNameInRow="id_pengeluaran" msprop:Generator_ColumnPropNameInTable="id_pengeluaranColumn" msprop:Generator_UserColumnName="id_pengeluaran" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="deskripsi" msprop:Generator_ColumnVarNameInTable="columndeskripsi" msprop:Generator_ColumnPropNameInRow="deskripsi" msprop:Generator_ColumnPropNameInTable="deskripsiColumn" msprop:Generator_UserColumnName="deskripsi" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jumlah_pengeluaran" msprop:Generator_ColumnVarNameInTable="columnjumlah_pengeluaran" msprop:Generator_ColumnPropNameInRow="jumlah_pengeluaran" msprop:Generator_ColumnPropNameInTable="jumlah_pengeluaranColumn" msprop:Generator_UserColumnName="jumlah_pengeluaran" type="xs:long" minOccurs="0" />
+              <xs:element name="tgl_pengeluaran" msprop:Generator_ColumnVarNameInTable="columntgl_pengeluaran" msprop:Generator_ColumnPropNameInRow="tgl_pengeluaran" msprop:Generator_ColumnPropNameInTable="tgl_pengeluaranColumn" msprop:Generator_UserColumnName="tgl_pengeluaran" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Expr1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr2" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr2" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_UserColumnName="Expr2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Expr3" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr3" msprop:Generator_ColumnPropNameInRow="Expr3" msprop:Generator_ColumnPropNameInTable="Expr3Column" msprop:Generator_UserColumnName="Expr3" type="xs:int" minOccurs="0" />
+              <xs:element name="Expr4" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr4" msprop:Generator_ColumnPropNameInRow="Expr4" msprop:Generator_ColumnPropNameInTable="Expr4Column" msprop:Generator_UserColumnName="Expr4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr5" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr5" msprop:Generator_ColumnPropNameInRow="Expr5" msprop:Generator_ColumnPropNameInTable="Expr5Column" msprop:Generator_UserColumnName="Expr5" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr6" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr6" msprop:Generator_ColumnPropNameInRow="Expr6" msprop:Generator_ColumnPropNameInTable="Expr6Column" msprop:Generator_UserColumnName="Expr6" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr7" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr7" msprop:Generator_ColumnPropNameInRow="Expr7" msprop:Generator_ColumnPropNameInTable="Expr7Column" msprop:Generator_UserColumnName="Expr7" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr8" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr8" msprop:Generator_ColumnPropNameInRow="Expr8" msprop:Generator_ColumnPropNameInTable="Expr8Column" msprop:Generator_UserColumnName="Expr8" type="xs:long" minOccurs="0" />
+              <xs:element name="Expr9" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr9" msprop:Generator_ColumnPropNameInRow="Expr9" msprop:Generator_ColumnPropNameInTable="Expr9Column" msprop:Generator_UserColumnName="Expr9" type="xs:long" minOccurs="0" />
+              <xs:element name="Expr10" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr10" msprop:Generator_ColumnPropNameInRow="Expr10" msprop:Generator_ColumnPropNameInTable="Expr10Column" msprop:Generator_UserColumnName="Expr10" type="xs:long" minOccurs="0" />
+              <xs:element name="Expr11" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr11" msprop:Generator_ColumnPropNameInRow="Expr11" msprop:Generator_ColumnPropNameInTable="Expr11Column" msprop:Generator_UserColumnName="Expr11" type="xs:long" minOccurs="0" />
+              <xs:element name="Expr12" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr12" msprop:Generator_ColumnPropNameInRow="Expr12" msprop:Generator_ColumnPropNameInTable="Expr12Column" msprop:Generator_UserColumnName="Expr12" type="xs:int" minOccurs="0" />
+              <xs:element name="Expr13" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr13" msprop:Generator_ColumnPropNameInRow="Expr13" msprop:Generator_ColumnPropNameInTable="Expr13Column" msprop:Generator_UserColumnName="Expr13" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr14" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr14" msprop:Generator_ColumnPropNameInRow="Expr14" msprop:Generator_ColumnPropNameInTable="Expr14Column" msprop:Generator_UserColumnName="Expr14" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr15" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr15" msprop:Generator_ColumnPropNameInRow="Expr15" msprop:Generator_ColumnPropNameInTable="Expr15Column" msprop:Generator_UserColumnName="Expr15" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Expr16" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr16" msprop:Generator_ColumnPropNameInRow="Expr16" msprop:Generator_ColumnPropNameInTable="Expr16Column" msprop:Generator_UserColumnName="Expr16" type="xs:long" minOccurs="0" />
+              <xs:element name="Expr17" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExpr17" msprop:Generator_ColumnPropNameInRow="Expr17" msprop:Generator_ColumnPropNameInTable="Expr17Column" msprop:Generator_UserColumnName="Expr17" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

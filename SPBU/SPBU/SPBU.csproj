@@ -32,8 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +47,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Laporan_Transaksi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Laporan_Transaksi.Designer.cs">
+      <DependentUpon>Laporan_Transaksi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Laporan\DataSetTransaksi.cs">
+      <DependentUpon>DataSetTransaksi.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Laporan\DataSetTransaksi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTransaksi.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Dialog_BBM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,9 +162,14 @@
     <EmbeddedResource Include="GUI\Form_TRANSAKSI.resx">
       <DependentUpon>Form_TRANSAKSI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Laporan_transaksi.resx">
+      <DependentUpon>Laporan_Transaksi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\menuUtama.resx">
       <DependentUpon>menuUtama.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Report1.rdlc" />
+    <EmbeddedResource Include="GUI\Report2.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -156,6 +179,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Laporan\DataSetTransaksi.xsc">
+      <DependentUpon>DataSetTransaksi.xsd</DependentUpon>
+    </None>
+    <None Include="Laporan\DataSetTransaksi.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTransaksi.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Laporan\DataSetTransaksi.xss">
+      <DependentUpon>DataSetTransaksi.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -167,11 +201,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Kelas\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Gambar\" />
-    <Folder Include="Laporan\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

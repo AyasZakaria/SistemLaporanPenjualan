@@ -20,6 +20,7 @@ namespace SPBU.GUI
         Form_POMPA pompa;
         Form_TRANSAKSI transaksi;
         Form_PENERIMAAN penerimaan;
+        Laporan_Transaksi laporan;
         public menuUtama()
         {
             InitializeComponent();
@@ -191,6 +192,26 @@ namespace SPBU.GUI
             else
             {
                 penerimaan.Activate();
+            }
+        }
+        void laporantransaksi(Object sender, FormClosedEventArgs e)
+        {
+            laporan = null;
+        }
+        private void harianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+              if (laporan == null)
+            {
+                laporan = new Laporan_Transaksi();
+
+                laporan.FormClosed += new FormClosedEventHandler(laporantransaksi);
+                laporan.Show();
+
+
+            }
+            else
+            {
+                laporan.Activate();
             }
         }
 

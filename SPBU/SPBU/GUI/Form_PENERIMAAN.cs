@@ -73,7 +73,7 @@ namespace SPBU.GUI
             button_ubah.Enabled = param2;
             button_hapus.Enabled = param2;
             button_caribbm.Enabled = true;
-            textBox_idpenerimaan.Enabled = param1;
+            textBox_idpenerimaan.Enabled = false;
             textBox_namaBbm_penerimaan.Enabled = false;
             textBox_jumlahPenerimaan.Enabled = param1;
             dateTimePicker_penerimaan.Enabled = param2;
@@ -108,6 +108,17 @@ namespace SPBU.GUI
 
         private void button_baru_Click(object sender, EventArgs e)
         {
+
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlCmd = new SqlCommand("SELECT MAX(id_penerimaan) FROM tbl_penerimaan", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                textBox_idpenerimaan.Text=(Convert.ToInt64(sqlReader[0].ToString()).ToString());
+            }
+            sqlReader.Close();
             clear();
             aturTombol(true, true);
         }
@@ -126,7 +137,7 @@ namespace SPBU.GUI
                 command.Connection = konn.GetConn();
                 command.Connection.Open();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO tbl_penerimaan VALUES('" + textBox_idpenerimaan.Text + "','" + id_bbm_penerimaan + "','" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "','" + textBox_jumlahPenerimaan.Text + "')";
+                command.CommandText = "INSERT INTO tbl_penerimaan VALUES('"+ id_bbm_penerimaan + "','" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "','" + textBox_jumlahPenerimaan.Text + "')";
                 command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil 
                 MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 

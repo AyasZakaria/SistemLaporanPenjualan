@@ -48,3 +48,6 @@ D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Form_PENERIMAAN.resources
 D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Dialog_Pompa.resources
 D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Dialog_TransaksiPerbulan.resources
 D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Dialog_TransaksiPertanggal.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\SPBU.GUI.Laporan_Transaksi.resources
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\RdlCompile.cache
+D:\TA PPL\SBPU\SPBU\SPBU\obj\Debug\RdlCompile.compiled

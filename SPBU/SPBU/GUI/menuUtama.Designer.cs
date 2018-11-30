@@ -38,10 +38,10 @@
             this.bBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pOMPAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pENGELUARANToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pENERIMAANToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.laporanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.harianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bulanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pENERIMAANToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +92,7 @@
             // transaksiToolStripMenuItem1
             // 
             this.transaksiToolStripMenuItem1.Name = "transaksiToolStripMenuItem1";
-            this.transaksiToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.transaksiToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.transaksiToolStripMenuItem1.Text = "Transaksi";
             this.transaksiToolStripMenuItem1.Click += new System.EventHandler(this.transaksiToolStripMenuItem1_Click);
             // 
@@ -128,6 +128,13 @@
             this.pENGELUARANToolStripMenuItem.Text = "PENGELUARAN";
             this.pENGELUARANToolStripMenuItem.Click += new System.EventHandler(this.pENGELUARANToolStripMenuItem_Click);
             // 
+            // pENERIMAANToolStripMenuItem
+            // 
+            this.pENERIMAANToolStripMenuItem.Name = "pENERIMAANToolStripMenuItem";
+            this.pENERIMAANToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.pENERIMAANToolStripMenuItem.Text = "PENERIMAAN";
+            this.pENERIMAANToolStripMenuItem.Click += new System.EventHandler(this.pENERIMAANToolStripMenuItem_Click);
+            // 
             // laporanToolStripMenuItem
             // 
             this.laporanToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -140,21 +147,15 @@
             // harianToolStripMenuItem
             // 
             this.harianToolStripMenuItem.Name = "harianToolStripMenuItem";
-            this.harianToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.harianToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.harianToolStripMenuItem.Text = "Harian";
+            this.harianToolStripMenuItem.Click += new System.EventHandler(this.harianToolStripMenuItem_Click);
             // 
             // bulanToolStripMenuItem
             // 
             this.bulanToolStripMenuItem.Name = "bulanToolStripMenuItem";
-            this.bulanToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.bulanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.bulanToolStripMenuItem.Text = "Bulan";
-            // 
-            // pENERIMAANToolStripMenuItem
-            // 
-            this.pENERIMAANToolStripMenuItem.Name = "pENERIMAANToolStripMenuItem";
-            this.pENERIMAANToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.pENERIMAANToolStripMenuItem.Text = "PENERIMAAN";
-            this.pENERIMAANToolStripMenuItem.Click += new System.EventHandler(this.pENERIMAANToolStripMenuItem_Click);
             // 
             // menuUtama
             // 

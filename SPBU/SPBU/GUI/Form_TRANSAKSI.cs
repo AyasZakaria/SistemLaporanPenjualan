@@ -627,10 +627,185 @@ namespace SPBU.GUI
                // MessageBox.Show("" + id);
             }
             sqlReader.Close();
-            MessageBox.Show("" + id);
+            //MessageBox.Show("" + id);
             return id;
         }
-        private void insertcombobox()
+
+        private void insertstok()
+        {
+            //pertalite
+            long stockAwalPertalite = 0;
+            long stockAkhirPertalite = 0;
+            long penerimaanPertalite = 0;
+            long pengeluaranPertalite = 0;
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlCmd = new SqlCommand("SELECT jumlah_stok FROM tbl_stock WHERE id_bbm='B-001' and tgl_stok = (select max (tgl_stok)from tbl_stock)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                stockAwalPertalite = Convert.ToInt64(sqlReader["jumlah_stok"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT jumlah_penerimaan FROM tbl_penerimaan WHERE id_bbm='B-001' and tgl_penerimaan = (select max (tgl_penerimaan)from tbl_penerimaan)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                penerimaanPertalite = Convert.ToInt64(sqlReader["jumlah_penerimaan"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT SUM(total) FROM vtransaksi WHERE id_bbm='B-001' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                pengeluaranPertalite = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+
+            stockAkhirPertalite = stockAwalPertalite + penerimaanPertalite - pengeluaranPertalite;
+            //pertamax
+            long stockAwalPertamax = 0;
+            long stockAkhirPertamax = 0;
+            long penerimaanPertamax = 0;
+            long pengeluaranPertamax = 0;
+            sqlConnection = konn.GetConn();
+            sqlCmd = new SqlCommand("SELECT jumlah_stok FROM tbl_stock WHERE id_bbm='B-004' and tgl_stok = (select max (tgl_stok)from tbl_stock)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                stockAwalPertamax = Convert.ToInt64(sqlReader["jumlah_stok"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT jumlah_penerimaan FROM tbl_penerimaan WHERE id_bbm='B-004' and tgl_penerimaan = (select max (tgl_penerimaan)from tbl_penerimaan)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                penerimaanPertamax = Convert.ToInt64(sqlReader["jumlah_penerimaan"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT SUM(total) FROM vtransaksi WHERE id_bbm='B-004' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                pengeluaranPertamax = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+
+            stockAkhirPertamax = stockAwalPertamax + penerimaanPertamax - pengeluaranPertamax;
+            //solar
+            long stockAwalSolar = 0;
+            long stockAkhirSolar = 0;
+            long penerimaanSolar = 0;
+            long pengeluaranSolar = 0;
+            sqlConnection = konn.GetConn();
+            sqlCmd = new SqlCommand("SELECT jumlah_stok FROM tbl_stock WHERE id_bbm='B-002' and tgl_stok = (select max (tgl_stok)from tbl_stock)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                stockAwalSolar = Convert.ToInt64(sqlReader["jumlah_stok"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT jumlah_penerimaan FROM tbl_penerimaan WHERE id_bbm='B-002' and tgl_penerimaan = (select max (tgl_penerimaan)from tbl_penerimaan)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                penerimaanSolar = Convert.ToInt64(sqlReader["jumlah_penerimaan"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT SUM(total) FROM vtransaksi WHERE id_bbm='B-002' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                pengeluaranSolar = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+
+            stockAkhirSolar = stockAwalSolar + penerimaanSolar - pengeluaranSolar;
+            //premium
+            long stockAwalPremium = 0;
+            long stockAkhirPremium = 0;
+            long penerimaanPremium = 0;
+            long pengeluaranPremium = 0;
+            sqlConnection = konn.GetConn();
+            sqlCmd = new SqlCommand("SELECT jumlah_stok FROM tbl_stock WHERE id_bbm='B-003' and tgl_stok = (select max (tgl_stok)from tbl_stock)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                stockAwalPremium = Convert.ToInt64(sqlReader["jumlah_stok"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT jumlah_penerimaan FROM tbl_penerimaan WHERE id_bbm='B-003' and tgl_penerimaan = (select max (tgl_penerimaan)from tbl_penerimaan)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                penerimaanPremium = Convert.ToInt64(sqlReader["jumlah_penerimaan"].ToString());
+            }
+            sqlReader.Close();
+            sqlCmd = new SqlCommand("SELECT SUM(total) FROM vtransaksi WHERE id_bbm='B-003' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Close();
+            sqlConnection.Open();
+            sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                pengeluaranPremium = Convert.ToInt64(sqlReader[0].ToString());
+            }
+            sqlReader.Close();
+            stockAkhirPremium = stockAwalPremium + penerimaanPremium - pengeluaranPremium;
+            try
+            {
+                SqlCommand command = new SqlCommand(); 
+                command.Connection = konn.GetConn();
+                command.Connection.Open(); 
+                command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_stock VALUES ('B-001','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") + "','" + stockAkhirPertalite + "')";
+                command.ExecuteNonQuery();
+                command.CommandText = "INSERT INTO tbl_stock VALUES ('B-002','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") + "','" + stockAkhirSolar + "')";
+                command.ExecuteNonQuery();
+                command.CommandText = "INSERT INTO tbl_stock VALUES ('B-003','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") + "','" + stockAkhirPremium + "')";
+                command.ExecuteNonQuery();
+                command.CommandText = "INSERT INTO tbl_stock VALUES ('B-004','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") + "','" + stockAkhirPertamax + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close();
+            }
+            catch (SqlException h)
+                {
+                MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } 
+        }
+
+       private void insertcombobox()
         {
             //premium
             if (comboBox_namapompa_premium1.Text != "")
@@ -846,6 +1021,11 @@ namespace SPBU.GUI
                 command.CommandText = "DELETE FROM tbl_transaksi WHERE id_transaksi='" + id + "'";
                 command.ExecuteNonQuery();
                 command.Connection.Close();//pesan berhasil 
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "DELETE FROM tbl_stock WHERE tgl_stok='" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") + "'";
+                command.ExecuteNonQuery();
+                command.Connection.Close();//pesan berhasil 
                 MessageBox.Show("Data Berhasil Dihapus", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
                 loadDaftar(); //memanggil bersih data 
                 clear();
@@ -888,6 +1068,7 @@ namespace SPBU.GUI
                 command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil 
                 insertcombobox();
+                insertstok();
                 MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
                 loadDaftar(); //memanggil bersih data 
                 clear();
