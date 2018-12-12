@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_TRANSAKSI));
             this.textBox_idTransaksi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker_tglTransaksi = new System.Windows.Forms.DateTimePicker();
@@ -47,9 +48,6 @@
             this.textBox_totalPertalitePompa2 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox_totalPertalitePompa1 = new System.Windows.Forms.TextBox();
-            this.button_baru = new System.Windows.Forms.Button();
-            this.button_hapus = new System.Windows.Forms.Button();
-            this.button_simpan = new System.Windows.Forms.Button();
             this.dataGridView_transaksi = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox_namapompa_pertalite4 = new System.Windows.Forms.ComboBox();
@@ -121,6 +119,9 @@
             this.textBox_totalPremiumPompa3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_cari = new System.Windows.Forms.TextBox();
+            this.button_simpan = new System.Windows.Forms.Button();
+            this.button_hapus = new System.Windows.Forms.Button();
+            this.button_baru = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_transaksi)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -293,39 +294,6 @@
             this.textBox_totalPertalitePompa1.Name = "textBox_totalPertalitePompa1";
             this.textBox_totalPertalitePompa1.Size = new System.Drawing.Size(68, 22);
             this.textBox_totalPertalitePompa1.TabIndex = 47;
-            // 
-            // button_baru
-            // 
-            this.button_baru.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_baru.Location = new System.Drawing.Point(12, 435);
-            this.button_baru.Name = "button_baru";
-            this.button_baru.Size = new System.Drawing.Size(65, 33);
-            this.button_baru.TabIndex = 64;
-            this.button_baru.Text = "Baru";
-            this.button_baru.UseVisualStyleBackColor = true;
-            this.button_baru.Click += new System.EventHandler(this.button_baru_Click);
-            // 
-            // button_hapus
-            // 
-            this.button_hapus.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_hapus.Location = new System.Drawing.Point(184, 435);
-            this.button_hapus.Name = "button_hapus";
-            this.button_hapus.Size = new System.Drawing.Size(65, 33);
-            this.button_hapus.TabIndex = 65;
-            this.button_hapus.Text = "Hapus";
-            this.button_hapus.UseVisualStyleBackColor = true;
-            this.button_hapus.Click += new System.EventHandler(this.button_hapus_Click);
-            // 
-            // button_simpan
-            // 
-            this.button_simpan.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_simpan.Location = new System.Drawing.Point(97, 435);
-            this.button_simpan.Name = "button_simpan";
-            this.button_simpan.Size = new System.Drawing.Size(65, 33);
-            this.button_simpan.TabIndex = 67;
-            this.button_simpan.Text = "Simpan";
-            this.button_simpan.UseVisualStyleBackColor = true;
-            this.button_simpan.Click += new System.EventHandler(this.button_simpan_Click);
             // 
             // dataGridView_transaksi
             // 
@@ -1036,6 +1004,47 @@
             this.textBox_cari.TabIndex = 90;
             this.textBox_cari.TextChanged += new System.EventHandler(this.textBox_cari_TextChanged);
             // 
+            // button_simpan
+            // 
+            this.button_simpan.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_simpan.Image = global::SPBU.Properties.Resources.save16;
+            this.button_simpan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_simpan.Location = new System.Drawing.Point(93, 435);
+            this.button_simpan.Name = "button_simpan";
+            this.button_simpan.Size = new System.Drawing.Size(71, 33);
+            this.button_simpan.TabIndex = 67;
+            this.button_simpan.Text = "Simpan";
+            this.button_simpan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button_simpan.UseVisualStyleBackColor = true;
+            this.button_simpan.Click += new System.EventHandler(this.button_simpan_Click);
+            // 
+            // button_hapus
+            // 
+            this.button_hapus.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_hapus.Image = global::SPBU.Properties.Resources.delete16;
+            this.button_hapus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_hapus.Location = new System.Drawing.Point(170, 435);
+            this.button_hapus.Name = "button_hapus";
+            this.button_hapus.Size = new System.Drawing.Size(65, 33);
+            this.button_hapus.TabIndex = 65;
+            this.button_hapus.Text = "Hapus";
+            this.button_hapus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button_hapus.UseVisualStyleBackColor = true;
+            this.button_hapus.Click += new System.EventHandler(this.button_hapus_Click);
+            // 
+            // button_baru
+            // 
+            this.button_baru.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_baru.Image = global::SPBU.Properties.Resources.add16;
+            this.button_baru.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_baru.Location = new System.Drawing.Point(12, 435);
+            this.button_baru.Name = "button_baru";
+            this.button_baru.Size = new System.Drawing.Size(75, 33);
+            this.button_baru.TabIndex = 64;
+            this.button_baru.Text = "Baru";
+            this.button_baru.UseVisualStyleBackColor = true;
+            this.button_baru.Click += new System.EventHandler(this.button_baru_Click);
+            // 
             // Form_TRANSAKSI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1054,9 +1063,13 @@
             this.Controls.Add(this.dateTimePicker_tglTransaksi);
             this.Controls.Add(this.textBox_idTransaksi);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form_TRANSAKSI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form_TRANSAKSI";
+            this.Text = "Transaksi";
             this.Load += new System.EventHandler(this.Form_TRANSAKSI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_transaksi)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1074,9 +1087,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox_idTransaksi;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_tglTransaksi;
         private System.Windows.Forms.TextBox textBox_standAwalpertalitePompa1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -1167,5 +1178,7 @@
         private System.Windows.Forms.TextBox textBox_totalPremiumPompa3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_cari;
+        public System.Windows.Forms.DateTimePicker dateTimePicker_tglTransaksi;
+        public System.Windows.Forms.TextBox textBox_idTransaksi;
     }
 }

@@ -69,8 +69,6 @@ namespace SPBU.GUI
 
                     //Laporan Tool Strip Aktif
                     menuUtama.MenuUtama.laporanToolStripMenuItem.Enabled = true;
-                    menuUtama.MenuUtama.harianToolStripMenuItem.Enabled = true;
-                    menuUtama.MenuUtama.bulanToolStripMenuItem.Enabled = true;
 
                     this.Close();
 
@@ -107,6 +105,11 @@ namespace SPBU.GUI
             {
                 MessageBox.Show(x.ToString());
             }
+        }
+
+        private void button_exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

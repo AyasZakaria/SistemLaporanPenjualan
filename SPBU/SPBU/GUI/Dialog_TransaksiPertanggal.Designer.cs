@@ -47,6 +47,7 @@
             this.button_cetak.TabIndex = 1;
             this.button_cetak.Text = "Cetak";
             this.button_cetak.UseVisualStyleBackColor = true;
+            this.button_cetak.Click += new System.EventHandler(this.button_cetak_Click);
             // 
             // Dialog_TransaksiPertanggal
             // 

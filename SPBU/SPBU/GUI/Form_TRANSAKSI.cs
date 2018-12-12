@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-
 namespace SPBU.GUI
 {
     public partial class Form_TRANSAKSI : Form
     {
+
         Kelas.Koneksi konn = new Kelas.Koneksi();
         public String id_bbm_transaksi;
         Kelas.AutoNumber AutoNumber = new Kelas.AutoNumber();
@@ -38,7 +38,7 @@ namespace SPBU.GUI
             {
                 MessageBox.Show("" + e);
             }
-            
+
         }
         public DataSet getData()
         {
@@ -121,7 +121,7 @@ namespace SPBU.GUI
             {
                 hargapertamax = Convert.ToInt64(sqlReader[0].ToString());
             }
-            
+
         }//loadDaftar
 
         public void disabledCombo()
@@ -140,7 +140,7 @@ namespace SPBU.GUI
 
 
             sqlCmd = new SqlCommand("SELECT COUNT(*) FROM tbl_pompa WHERE id_bbm ='B-002'", sqlConnection);// ambil solar
-            
+
             sqlReader = sqlCmd.ExecuteReader();
 
             while (sqlReader.Read())
@@ -150,7 +150,7 @@ namespace SPBU.GUI
             sqlReader.Close();
 
             sqlCmd = new SqlCommand("SELECT COUNT(*) FROM tbl_pompa WHERE id_bbm ='B-003'", sqlConnection);// ambil premium
-            
+
             sqlReader = sqlCmd.ExecuteReader();
 
             while (sqlReader.Read())
@@ -160,7 +160,7 @@ namespace SPBU.GUI
             sqlReader.Close();
 
             sqlCmd = new SqlCommand("SELECT COUNT(*) FROM tbl_pompa WHERE id_bbm ='B-004'", sqlConnection);// ambil pertamax
-            
+
             sqlReader = sqlCmd.ExecuteReader();
 
             while (sqlReader.Read())
@@ -170,7 +170,7 @@ namespace SPBU.GUI
             sqlReader.Close();
 
             //pertalite
-            if(jumlahPertalite == 0)
+            if (jumlahPertalite == 0)
             {
                 comboBox_namapompa_pertalite1.Enabled = false;
                 comboBox_namapompa_pertalite2.Enabled = false;
@@ -446,7 +446,7 @@ namespace SPBU.GUI
 
         public void clear()
         {
-           // textBox_idTransaksi.Clear();
+            // textBox_idTransaksi.Clear();
             textBox_cari.Clear();
             //pertalite
             comboBox_namapompa_pertalite1.Enabled = false;
@@ -615,16 +615,16 @@ namespace SPBU.GUI
         }//aturTombol 
         string ambilidpompa(string namapompa)
         {
-            string id=""; 
+            string id = "";
             SqlConnection sqlConnection = konn.GetConn();
-            SqlCommand sqlCmd = new SqlCommand("select id_pompa from tbl_pompa where nama_pompa = '"+namapompa+"'", sqlConnection);// ambil pertalite
+            SqlCommand sqlCmd = new SqlCommand("select id_pompa from tbl_pompa where nama_pompa = '" + namapompa + "'", sqlConnection);// ambil pertalite
             sqlConnection.Open();
             SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
             while (sqlReader.Read())
             {
                 id = Convert.ToString(sqlReader[0].ToString());
-               // MessageBox.Show("" + id);
+                // MessageBox.Show("" + id);
             }
             sqlReader.Close();
             //MessageBox.Show("" + id);
@@ -785,9 +785,9 @@ namespace SPBU.GUI
             stockAkhirPremium = stockAwalPremium + penerimaanPremium - pengeluaranPremium;
             try
             {
-                SqlCommand command = new SqlCommand(); 
+                SqlCommand command = new SqlCommand();
                 command.Connection = konn.GetConn();
-                command.Connection.Open(); 
+                command.Connection.Open();
                 command.CommandType = CommandType.Text;
                 command.CommandText = "INSERT INTO tbl_stock VALUES ('B-001','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") + "','" + stockAkhirPertalite + "')";
                 command.ExecuteNonQuery();
@@ -800,12 +800,12 @@ namespace SPBU.GUI
                 command.Connection.Close();
             }
             catch (SqlException h)
-                {
+            {
                 MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } 
+            }
         }
 
-       private void insertcombobox()
+        private void insertcombobox()
         {
             //premium
             if (comboBox_namapompa_premium1.Text != "")
@@ -815,7 +815,7 @@ namespace SPBU.GUI
                 command.Connection.Open();
                 command.CommandType = CommandType.Text;
 
-                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_premium1.Text) + "','B-003','"  + textBox_standAwalPremiumPompa1.Text + "','" + textBox_standAkhirPremiumPompa1.Text + "','" + hargapremium + "')";
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_premium1.Text) + "','B-003','" + textBox_standAwalPremiumPompa1.Text + "','" + textBox_standAkhirPremiumPompa1.Text + "','" + hargapremium + "')";
                 command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil 
             }
@@ -829,17 +829,17 @@ namespace SPBU.GUI
                 command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil 
             }
-             if (comboBox_namapompa_premium3.Text != "")
+            if (comboBox_namapompa_premium3.Text != "")
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = konn.GetConn();
                 command.Connection.Open();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','"+ambilidpompa(comboBox_namapompa_premium3.Text)+"','B-003','"  + textBox_standAwalPremiumPompa3.Text + "','" + textBox_standAkhirPremiumPompa3.Text + "','" + hargapremium + "')";
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_premium3.Text) + "','B-003','" + textBox_standAwalPremiumPompa3.Text + "','" + textBox_standAkhirPremiumPompa3.Text + "','" + hargapremium + "')";
                 command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil 
             }
-             if (comboBox_namapompa_premium4.Text != "")
+            if (comboBox_namapompa_premium4.Text != "")
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = konn.GetConn();
@@ -850,139 +850,139 @@ namespace SPBU.GUI
                 command.Connection.Close(); //pesan berhasil 
             }
             //pertamax
-             if (comboBox_namapompa_pertamax1.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+            if (comboBox_namapompa_pertamax1.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax1.Text) + "','B-004','" + textBox_standAwalPertamaxPompa1.Text + "','" + textBox_standAkhirPertamaxPompa1.Text + "','" + hargapertamax + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             } if (comboBox_namapompa_pertamax2.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax1.Text) + "','B-004','" + textBox_standAwalPertamaxPompa1.Text + "','" + textBox_standAkhirPertamaxPompa1.Text + "','" + hargapertamax + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            } if (comboBox_namapompa_pertamax2.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax2.Text) + "','B-004','" + textBox_standAwalPertamaxPompa2.Text + "','" + textBox_standAkhirPertamaxPompa2.Text + "','" + hargapertamax + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_pertamax3.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax2.Text) + "','B-004','" + textBox_standAwalPertamaxPompa2.Text + "','" + textBox_standAkhirPertamaxPompa2.Text + "','" + hargapertamax + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_pertamax3.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax3.Text) + "','B-004','" + textBox_standAwalPertamaxPompa3.Text + "','" + textBox_standAkhirPertamaxPompa3.Text + "','" + hargapertamax + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_pertamax4.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax3.Text) + "','B-004','" + textBox_standAwalPertamaxPompa3.Text + "','" + textBox_standAkhirPertamaxPompa3.Text + "','" + hargapertamax + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_pertamax4.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax4.Text) + "','B-004','" + textBox_standAwalPertamaxPompa4.Text + "','" + textBox_standAkhirPertamaxPompa4.Text + "','" + hargapertamax + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             //solar
-             if (comboBox_namapompa_solat1.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertamax4.Text) + "','B-004','" + textBox_standAwalPertamaxPompa4.Text + "','" + textBox_standAkhirPertamaxPompa4.Text + "','" + hargapertamax + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            //solar
+            if (comboBox_namapompa_solat1.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat1.Text) + "','B-002','" + textBox_standAwalSolarPompa1.Text + "','" + textBox_standAkhirSolarPompa1.Text + "','" + hargasolar + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_solat2.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat1.Text) + "','B-002','" + textBox_standAwalSolarPompa1.Text + "','" + textBox_standAkhirSolarPompa1.Text + "','" + hargasolar + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_solat2.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat2.Text) + "','B-002','" + textBox_standAwalSolarPompa2.Text + "','" + textBox_standAkhirSolarPompa2.Text + "','" + hargasolar + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_solat3.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat2.Text) + "','B-002','" + textBox_standAwalSolarPompa2.Text + "','" + textBox_standAkhirSolarPompa2.Text + "','" + hargasolar + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_solat3.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat3.Text) + "','B-002','"  + textBox_standAwalSolarPompa3.Text + "','" + textBox_standAkhirSolarPompa3.Text + "','" + hargasolar + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_solat4.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat3.Text) + "','B-002','" + textBox_standAwalSolarPompa3.Text + "','" + textBox_standAkhirSolarPompa3.Text + "','" + hargasolar + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_solat4.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat4.Text) + "','B-002','" + textBox_standAwalSolarPompa4.Text + "','" + textBox_standAkhirSolarPompa4.Text + "','" + hargasolar + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             //pertalite
-             if (comboBox_namapompa_pertalite1.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_solat4.Text) + "','B-002','" + textBox_standAwalSolarPompa4.Text + "','" + textBox_standAkhirSolarPompa4.Text + "','" + hargasolar + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            //pertalite
+            if (comboBox_namapompa_pertalite1.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite1.Text) + "','B-001','" + textBox_standAwalpertalitePompa1.Text + "','" + textBox_standAkhirPertalitePompa1.Text + "','" + hargapertalite + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_pertalite2.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite1.Text) + "','B-001','" + textBox_standAwalpertalitePompa1.Text + "','" + textBox_standAkhirPertalitePompa1.Text + "','" + hargapertalite + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_pertalite2.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite2.Text) + "','B-001','" + textBox_standAwalpertalitePompa2.Text + "','" + textBox_standAkhirPertalitePompa2.Text + "','" + hargapertalite + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_pertalite3.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite2.Text) + "','B-001','" + textBox_standAwalpertalitePompa2.Text + "','" + textBox_standAkhirPertalitePompa2.Text + "','" + hargapertalite + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_pertalite3.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite3.Text) + "','B-001','"+ textBox_standAwalpertalitePompa3.Text + "','" + textBox_standAkhirPertalitePompa3.Text + "','" + hargapertalite + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
-             if (comboBox_namapompa_pertalite4.Text != "")
-             {
-                 SqlCommand command = new SqlCommand();
-                 command.Connection = konn.GetConn();
-                 command.Connection.Open();
-                 command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite3.Text) + "','B-001','" + textBox_standAwalpertalitePompa3.Text + "','" + textBox_standAkhirPertalitePompa3.Text + "','" + hargapertalite + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
+            if (comboBox_namapompa_pertalite4.Text != "")
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = konn.GetConn();
+                command.Connection.Open();
+                command.CommandType = CommandType.Text;
 
-                 command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite4.Text) + "','B-001','" + textBox_standAwalpertalitePompa4.Text + "','" + textBox_standAkhirPertalitePompa4.Text + "','" + hargapertalite + "')";
-                 command.ExecuteNonQuery();
-                 command.Connection.Close(); //pesan berhasil 
-             }
+                command.CommandText = "INSERT INTO tbl_transaksi_detail VALUES('" + textBox_idTransaksi.Text + "','" + ambilidpompa(comboBox_namapompa_pertalite4.Text) + "','B-001','" + textBox_standAwalpertalitePompa4.Text + "','" + textBox_standAkhirPertalitePompa4.Text + "','" + hargapertalite + "')";
+                command.ExecuteNonQuery();
+                command.Connection.Close(); //pesan berhasil 
+            }
         }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -1040,7 +1040,7 @@ namespace SPBU.GUI
                 dateTimePicker_tglTransaksi.Text = dataGridView_transaksi.Rows[e.RowIndex].Cells[1].Value.ToString();
                 id_transaksi_detail = dataGridView_transaksi.Rows[e.RowIndex].Cells[2].Value.ToString();
                 //3 id pompa
-               // textBox_pompa1.Text = dataGridView_transaksi.Rows[e.RowIndex].Cells[4].Value.ToString();
+                // textBox_pompa1.Text = dataGridView_transaksi.Rows[e.RowIndex].Cells[4].Value.ToString();
                 //5 id bbm
                 //textBox_namaBbm.Text = dataGridView_transaksi.Rows[e.RowIndex].Cells[6].Value.ToString();
                 textBox_standAwalpertalitePompa1.Text = dataGridView_transaksi.Rows[e.RowIndex].Cells[7].Value.ToString();
@@ -1057,44 +1057,63 @@ namespace SPBU.GUI
 
         private void button_simpan_Click(object sender, EventArgs e)
         {
-            try
-            {
-                textBox_idTransaksi.Text = AutoNumber.Auto("tbl_transaksi", "T", "id_transaksi");
-                SqlCommand command = new SqlCommand();
-                command.Connection = konn.GetConn();
-                command.Connection.Open();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO tbl_transaksi VALUES('" + textBox_idTransaksi.Text + "','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") +"')";
-                command.ExecuteNonQuery();
-                command.Connection.Close(); //pesan berhasil 
-                insertcombobox();
-                insertstok();
-                MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
-                loadDaftar(); //memanggil bersih data 
-                clear();
-            }//try 
+            if (textBox_standAkhirPertalitePompa1.Text == "" || textBox_standAkhirPertalitePompa2.Text == "" || textBox_standAkhirPertalitePompa3.Text == "" || textBox_standAkhirPertalitePompa4.Text == "" || textBox_standAwalpertalitePompa1.Text == "" || textBox_standAwalpertalitePompa2.Text == "" || textBox_standAwalpertalitePompa3.Text == "" || textBox_standAwalpertalitePompa4.Text == "" || textBox_totalPertalitePompa1.Text == "" || textBox_totalPertalitePompa2.Text == "" || textBox_totalPertalitePompa3.Text == "" || textBox_totalPertalitePompa4.Text == "" || comboBox_namapompa_pertalite1.Text == "" || comboBox_namapompa_pertalite2.Text == "" || comboBox_namapompa_pertalite3.Text == "" || comboBox_namapompa_pertalite4.Text == "" ||
+               textBox_standAkhirPertamaxPompa1.Text == "" || textBox_standAkhirPertamaxPompa2.Text == "" || textBox_standAkhirPertamaxPompa3.Text == "" || textBox_standAkhirPertamaxPompa4.Text == ""
+               || textBox_standAwalPertamaxPompa1.Text == "" || textBox_standAwalPertamaxPompa2.Text == "" || textBox_standAwalPertamaxPompa3.Text == "" || textBox_standAwalPertamaxPompa4.Text == ""
+               || textBox_totalPertalitePompa1.Text == "" || textBox_totalPertalitePompa2.Text == "" || textBox_totalPertalitePompa3.Text == "" || textBox_totalPertalitePompa4.Text == ""
+               || comboBox_namapompa_pertamax1.Text == "" || comboBox_namapompa_pertamax2.Text == "" || comboBox_namapompa_pertamax3.Text == "" || comboBox_namapompa_pertamax4.Text == "" ||
 
-            catch (SqlException h)
+               textBox_standAkhirPremiumPompa1.Text == "" || textBox_standAkhirPremiumPompa2.Text == ""
+               || textBox_standAwalPremiumPompa1.Text == "" || textBox_standAwalPremiumPompa2.Text == ""
+               || textBox_totalPremiumPompa1.Text == "" || textBox_totalPremiumPompa2.Text == ""
+               || comboBox_namapompa_premium1.Text == "" || comboBox_namapompa_premium2.Text == "" ||
+               textBox_standAkhirSolarPompa1.Text == "" || textBox_standAkhirSolarPompa2.Text == ""
+               || textBox_standAwalSolarPompa1.Text == "" || textBox_standAwalSolarPompa2.Text == ""
+               || textBox_totalPremiumPompa1.Text == "" || textBox_totalPremiumPompa2.Text == ""
+               || comboBox_namapompa_solat1.Text == "" || comboBox_namapompa_solat2.Text == "")
             {
-                MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Data Harus Di Isi !!!");
+            }
+            else
+            {
+                try
+                {
+                    textBox_idTransaksi.Text = AutoNumber.Auto("tbl_transaksi", "T", "id_transaksi");
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = konn.GetConn();
+                    command.Connection.Open();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "INSERT INTO tbl_transaksi VALUES('" + textBox_idTransaksi.Text + "','" + Convert.ToDateTime(dateTimePicker_tglTransaksi.Value).ToString("yyyy-MM-dd") + "')";
+                    command.ExecuteNonQuery();
+                    command.Connection.Close(); //pesan berhasil 
+                    insertcombobox();
+                    insertstok();
+                    MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
+                    loadDaftar(); //memanggil bersih data 
+                    clear();
+                }//try 
 
-            }//catch
+                catch (SqlException h)
+                {
+                    MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }//catch
+            }
         }
-
         private void comboBox_namapompa_pertalite1_SelectedIndexChanged(object sender, EventArgs e)
         {
-                SqlConnection sqlConnection = konn.GetConn();
-                SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertalite1.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
-                sqlConnection.Open();
-                SqlDataReader sqlReader = sqlli.ExecuteReader();
-                textBox_standAwalpertalitePompa1.Text = "0";
-                while (sqlReader.Read())
-                {
-                    textBox_standAwalpertalitePompa1.Text = (sqlReader["stand_meter_akhir"].ToString());
-                }
-                sqlReader.Close();
-
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlli = new SqlCommand("select stand_meter_akhir from vtransaksi where nama_pompa = '" + comboBox_namapompa_pertalite1.Text + "' and tgl_transaksi = (select max (tgl_transaksi)from vtransaksi)", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlli.ExecuteReader();
+            textBox_standAwalpertalitePompa1.Text = "0";
+            while (sqlReader.Read())
+            {
+                textBox_standAwalpertalitePompa1.Text = (sqlReader["stand_meter_akhir"].ToString());
             }
+            sqlReader.Close();
+
+        }
 
         private void comboBox_namapompa_pertalite2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1265,13 +1284,13 @@ namespace SPBU.GUI
                 DataSet dts = new DataSet();
                 try
                 {
-                    long total=0;
+                    long total = 0;
                     total = Convert.ToInt64(textBox_standAkhirPertalitePompa1.Text) - Convert.ToInt64(textBox_standAwalpertalitePompa1.Text);
-                    if(total >=0)
+                    if (total >= 0)
                     {
                         textBox_totalPertalitePompa1.Text = total.ToString();
                     }
-                   
+
                 }//try
                 catch (SqlException)
                 {

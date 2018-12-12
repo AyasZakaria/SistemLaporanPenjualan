@@ -91,26 +91,33 @@ namespace SPBU.GUI
 
         private void button4_simpan_Click(object sender, EventArgs e)
         {
-            try
+            if (textBox_namabbm.Text == "" || textBox1_idPompa.Text == "" || textBox1_namaPompa.Text == "")
             {
-
-                SqlCommand command = new SqlCommand();
-                command.Connection = konn.GetConn();
-                command.Connection.Open();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO tbl_pompa VALUES('" + textBox1_idPompa.Text + "','" + textBox1_namaPompa.Text + "','" + id_bbm_pompa + "')";
-                command.ExecuteNonQuery();
-                command.Connection.Close(); //pesan berhasil 
-                MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
-                loadDaftar(); //memanggil bersih data 
-                clear();
-            }//try 
-
-            catch (SqlException h)
+                MessageBox.Show("Data Harus Di Isi !!!");
+            }
+            else
             {
-                MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
 
-            }//catch
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = konn.GetConn();
+                    command.Connection.Open();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "INSERT INTO tbl_pompa VALUES('" + textBox1_idPompa.Text + "','" + textBox1_namaPompa.Text + "','" + id_bbm_pompa + "')";
+                    command.ExecuteNonQuery();
+                    command.Connection.Close(); //pesan berhasil 
+                    MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
+                    loadDaftar(); //memanggil bersih data 
+                    clear();
+                }//try 
+
+                catch (SqlException h)
+                {
+                    MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }//catch
+            }
         }
 
         private void button3_ubah_Click(object sender, EventArgs e)

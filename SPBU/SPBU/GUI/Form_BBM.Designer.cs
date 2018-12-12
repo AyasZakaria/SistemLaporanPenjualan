@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_BBM));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_idBbm = new System.Windows.Forms.TextBox();
             this.textBox_namaBBM = new System.Windows.Forms.TextBox();
@@ -44,116 +45,73 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(24, 9);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ID BBM";
             // 
             // textBox_idBbm
             // 
-            this.textBox_idBbm.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_idBbm.Location = new System.Drawing.Point(115, 6);
+            resources.ApplyResources(this.textBox_idBbm, "textBox_idBbm");
             this.textBox_idBbm.Name = "textBox_idBbm";
-            this.textBox_idBbm.Size = new System.Drawing.Size(173, 22);
-            this.textBox_idBbm.TabIndex = 1;
             // 
             // textBox_namaBBM
             // 
-            this.textBox_namaBBM.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_namaBBM.Location = new System.Drawing.Point(115, 34);
+            resources.ApplyResources(this.textBox_namaBBM, "textBox_namaBBM");
             this.textBox_namaBBM.Name = "textBox_namaBBM";
-            this.textBox_namaBBM.Size = new System.Drawing.Size(173, 22);
-            this.textBox_namaBBM.TabIndex = 3;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(24, 37);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nama BBM";
             // 
             // textBox_harga
             // 
-            this.textBox_harga.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_harga.Location = new System.Drawing.Point(115, 62);
+            resources.ApplyResources(this.textBox_harga, "textBox_harga");
             this.textBox_harga.Name = "textBox_harga";
-            this.textBox_harga.Size = new System.Drawing.Size(173, 22);
-            this.textBox_harga.TabIndex = 5;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(24, 65);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Harga";
             // 
             // button_baru
             // 
-            this.button_baru.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_baru.Location = new System.Drawing.Point(12, 99);
+            resources.ApplyResources(this.button_baru, "button_baru");
             this.button_baru.Name = "button_baru";
-            this.button_baru.Size = new System.Drawing.Size(90, 37);
-            this.button_baru.TabIndex = 6;
-            this.button_baru.Text = "Baru";
             this.button_baru.UseVisualStyleBackColor = true;
             this.button_baru.Click += new System.EventHandler(this.button_baru_Click);
             // 
             // button_hapus
             // 
-            this.button_hapus.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_hapus.Location = new System.Drawing.Point(140, 99);
+            resources.ApplyResources(this.button_hapus, "button_hapus");
             this.button_hapus.Name = "button_hapus";
-            this.button_hapus.Size = new System.Drawing.Size(90, 37);
-            this.button_hapus.TabIndex = 7;
-            this.button_hapus.Text = "Hapus";
             this.button_hapus.UseVisualStyleBackColor = true;
             this.button_hapus.Click += new System.EventHandler(this.button_hapus_Click);
             // 
             // button_ubah
             // 
-            this.button_ubah.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ubah.Location = new System.Drawing.Point(261, 99);
+            resources.ApplyResources(this.button_ubah, "button_ubah");
             this.button_ubah.Name = "button_ubah";
-            this.button_ubah.Size = new System.Drawing.Size(90, 37);
-            this.button_ubah.TabIndex = 8;
-            this.button_ubah.Text = "Ubah";
             this.button_ubah.UseVisualStyleBackColor = true;
             this.button_ubah.Click += new System.EventHandler(this.button_ubah_Click);
             // 
             // button_simpan
             // 
-            this.button_simpan.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_simpan.Location = new System.Drawing.Point(379, 99);
+            resources.ApplyResources(this.button_simpan, "button_simpan");
             this.button_simpan.Name = "button_simpan";
-            this.button_simpan.Size = new System.Drawing.Size(90, 37);
-            this.button_simpan.TabIndex = 9;
-            this.button_simpan.Text = "Simpan";
             this.button_simpan.UseVisualStyleBackColor = true;
             this.button_simpan.Click += new System.EventHandler(this.button_simpan_Click);
             // 
             // dataGridView_bbm
             // 
             this.dataGridView_bbm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_bbm.Location = new System.Drawing.Point(12, 159);
+            resources.ApplyResources(this.dataGridView_bbm, "dataGridView_bbm");
             this.dataGridView_bbm.Name = "dataGridView_bbm";
-            this.dataGridView_bbm.Size = new System.Drawing.Size(456, 250);
-            this.dataGridView_bbm.TabIndex = 10;
             this.dataGridView_bbm.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_bbm_CellClick);
             // 
             // Form_BBM
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 421);
             this.Controls.Add(this.dataGridView_bbm);
             this.Controls.Add(this.button_simpan);
             this.Controls.Add(this.button_ubah);
@@ -165,8 +123,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_idBbm);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form_BBM";
-            this.Text = "Form_BBM";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_bbm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

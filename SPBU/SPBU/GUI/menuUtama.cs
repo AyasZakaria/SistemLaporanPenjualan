@@ -20,7 +20,7 @@ namespace SPBU.GUI
         Form_POMPA pompa;
         Form_TRANSAKSI transaksi;
         Form_PENERIMAAN penerimaan;
-        Laporan_Transaksi laporan;
+        Form_Laporan laporan;
         public menuUtama()
         {
             InitializeComponent();
@@ -45,8 +45,6 @@ namespace SPBU.GUI
 
             //Laporan Tool Strip
             laporanToolStripMenuItem.Enabled = false;
-            harianToolStripMenuItem.Enabled = false;
-            bulanToolStripMenuItem.Enabled = false;
 
             MenuUtama = this;
             Form_LOGIN login = new Form_LOGIN();
@@ -72,8 +70,7 @@ namespace SPBU.GUI
 
             //Laporan Tool Strip
             laporanToolStripMenuItem.Enabled = false;
-            harianToolStripMenuItem.Enabled = false;
-            bulanToolStripMenuItem.Enabled = false;
+
 
             MenuUtama = this;
             Form_LOGIN login = new Form_LOGIN();
@@ -95,9 +92,9 @@ namespace SPBU.GUI
             if (transaksi == null)
             {
                 transaksi= new Form_TRANSAKSI();
-
+                //transaksi.MdiParent = this;
                 transaksi.FormClosed += new FormClosedEventHandler(formtransaksi);
-                transaksi.Show();
+                transaksi.ShowDialog();
 
 
             }
@@ -117,10 +114,9 @@ namespace SPBU.GUI
             if (BBM == null)
             {
                 BBM = new Form_BBM();
-
+               // BBM.MdiParent = this;
                 BBM.FormClosed += new FormClosedEventHandler(formbbm);
-                BBM.Show();
-
+                BBM.ShowDialog();
 
             }
             else
@@ -141,7 +137,7 @@ namespace SPBU.GUI
                 pompa = new Form_POMPA();
 
                 pompa.FormClosed += new FormClosedEventHandler(formpompa);
-                pompa.Show();
+                pompa.ShowDialog();
 
 
             }
@@ -163,7 +159,7 @@ namespace SPBU.GUI
                 pengeluaran= new Form_PENGELUARAN();
 
                 pengeluaran.FormClosed += new FormClosedEventHandler(formpengeluaran);
-                pengeluaran.Show();
+                pengeluaran.ShowDialog();
 
 
             }
@@ -185,7 +181,7 @@ namespace SPBU.GUI
                 penerimaan = new Form_PENERIMAAN();
 
                 penerimaan.FormClosed += new FormClosedEventHandler(formpenerimaan);
-                penerimaan.Show();
+                penerimaan.ShowDialog();
 
 
             }
@@ -194,25 +190,36 @@ namespace SPBU.GUI
                 penerimaan.Activate();
             }
         }
-        void laporantransaksi(Object sender, FormClosedEventArgs e)
+
+        void formlaporan(Object sender, FormClosedEventArgs e)
         {
             laporan = null;
         }
-        private void harianToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void laporanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-              if (laporan == null)
+            if (laporan == null)
             {
-                laporan = new Laporan_Transaksi();
+                laporan = new Form_Laporan();
 
-                laporan.FormClosed += new FormClosedEventHandler(laporantransaksi);
-                laporan.Show();
-
+                laporan.FormClosed += new FormClosedEventHandler(formlaporan);
+                laporan.ShowDialog();
 
             }
             else
             {
                 laporan.Activate();
             }
+        }
+
+        private void harianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bulanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

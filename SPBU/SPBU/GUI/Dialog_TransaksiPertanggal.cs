@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace SPBU.GUI
 {
@@ -15,6 +16,11 @@ namespace SPBU.GUI
         public Dialog_TransaksiPertanggal()
         {
             InitializeComponent();
+        }
+
+        private void button_cetak_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

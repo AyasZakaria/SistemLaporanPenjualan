@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_POMPA));
             this.textBox1_idPompa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1_namaPompa = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label_namabbm = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBox_namabbm = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_cari = new System.Windows.Forms.TextBox();
+            this.button_id = new System.Windows.Forms.Button();
             this.button4_simpan = new System.Windows.Forms.Button();
             this.button3_ubah = new System.Windows.Forms.Button();
             this.button2_hapus = new System.Windows.Forms.Button();
             this.button1_baru = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox_namabbm = new System.Windows.Forms.TextBox();
-            this.button_id = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox_cari = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,50 +92,6 @@
             this.label_namabbm.TabIndex = 6;
             this.label_namabbm.Text = "Nama BBM";
             // 
-            // button4_simpan
-            // 
-            this.button4_simpan.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4_simpan.Location = new System.Drawing.Point(380, 100);
-            this.button4_simpan.Name = "button4_simpan";
-            this.button4_simpan.Size = new System.Drawing.Size(90, 37);
-            this.button4_simpan.TabIndex = 13;
-            this.button4_simpan.Text = "Simpan";
-            this.button4_simpan.UseVisualStyleBackColor = true;
-            this.button4_simpan.Click += new System.EventHandler(this.button4_simpan_Click);
-            // 
-            // button3_ubah
-            // 
-            this.button3_ubah.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3_ubah.Location = new System.Drawing.Point(255, 100);
-            this.button3_ubah.Name = "button3_ubah";
-            this.button3_ubah.Size = new System.Drawing.Size(90, 37);
-            this.button3_ubah.TabIndex = 12;
-            this.button3_ubah.Text = "Ubah";
-            this.button3_ubah.UseVisualStyleBackColor = true;
-            this.button3_ubah.Click += new System.EventHandler(this.button3_ubah_Click);
-            // 
-            // button2_hapus
-            // 
-            this.button2_hapus.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2_hapus.Location = new System.Drawing.Point(136, 100);
-            this.button2_hapus.Name = "button2_hapus";
-            this.button2_hapus.Size = new System.Drawing.Size(90, 37);
-            this.button2_hapus.TabIndex = 11;
-            this.button2_hapus.Text = "Hapus";
-            this.button2_hapus.UseVisualStyleBackColor = true;
-            this.button2_hapus.Click += new System.EventHandler(this.button2_hapus_Click);
-            // 
-            // button1_baru
-            // 
-            this.button1_baru.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_baru.Location = new System.Drawing.Point(13, 100);
-            this.button1_baru.Name = "button1_baru";
-            this.button1_baru.Size = new System.Drawing.Size(90, 37);
-            this.button1_baru.TabIndex = 10;
-            this.button1_baru.Text = "Baru";
-            this.button1_baru.UseVisualStyleBackColor = true;
-            this.button1_baru.Click += new System.EventHandler(this.button1_baru_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -151,16 +108,6 @@
             this.textBox_namabbm.Name = "textBox_namabbm";
             this.textBox_namabbm.Size = new System.Drawing.Size(173, 22);
             this.textBox_namabbm.TabIndex = 15;
-            // 
-            // button_id
-            // 
-            this.button_id.Location = new System.Drawing.Point(289, 65);
-            this.button_id.Name = "button_id";
-            this.button_id.Size = new System.Drawing.Size(56, 23);
-            this.button_id.TabIndex = 16;
-            this.button_id.Text = "Cari ID";
-            this.button_id.UseVisualStyleBackColor = true;
-            this.button_id.Click += new System.EventHandler(this.button_id_Click);
             // 
             // label5
             // 
@@ -181,6 +128,76 @@
             this.textBox_cari.TabIndex = 21;
             this.textBox_cari.TextChanged += new System.EventHandler(this.textBox_cari_TextChanged);
             // 
+            // button_id
+            // 
+            this.button_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_id.Image = global::SPBU.Properties.Resources.search16;
+            this.button_id.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_id.Location = new System.Drawing.Point(289, 56);
+            this.button_id.Name = "button_id";
+            this.button_id.Size = new System.Drawing.Size(71, 32);
+            this.button_id.TabIndex = 16;
+            this.button_id.Text = "Cari ID";
+            this.button_id.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button_id.UseVisualStyleBackColor = true;
+            this.button_id.Click += new System.EventHandler(this.button_id_Click);
+            // 
+            // button4_simpan
+            // 
+            this.button4_simpan.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4_simpan.Image = global::SPBU.Properties.Resources.save16;
+            this.button4_simpan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4_simpan.Location = new System.Drawing.Point(240, 101);
+            this.button4_simpan.Name = "button4_simpan";
+            this.button4_simpan.Size = new System.Drawing.Size(79, 37);
+            this.button4_simpan.TabIndex = 13;
+            this.button4_simpan.Text = "Simpan";
+            this.button4_simpan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4_simpan.UseVisualStyleBackColor = true;
+            this.button4_simpan.Click += new System.EventHandler(this.button4_simpan_Click);
+            // 
+            // button3_ubah
+            // 
+            this.button3_ubah.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3_ubah.Image = global::SPBU.Properties.Resources.edit16;
+            this.button3_ubah.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3_ubah.Location = new System.Drawing.Point(167, 100);
+            this.button3_ubah.Name = "button3_ubah";
+            this.button3_ubah.Size = new System.Drawing.Size(67, 37);
+            this.button3_ubah.TabIndex = 12;
+            this.button3_ubah.Text = "Ubah";
+            this.button3_ubah.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3_ubah.UseVisualStyleBackColor = true;
+            this.button3_ubah.Click += new System.EventHandler(this.button3_ubah_Click);
+            // 
+            // button2_hapus
+            // 
+            this.button2_hapus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2_hapus.Image = global::SPBU.Properties.Resources.delete16;
+            this.button2_hapus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2_hapus.Location = new System.Drawing.Point(90, 100);
+            this.button2_hapus.Name = "button2_hapus";
+            this.button2_hapus.Size = new System.Drawing.Size(71, 36);
+            this.button2_hapus.TabIndex = 11;
+            this.button2_hapus.Text = "Hapus";
+            this.button2_hapus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2_hapus.UseVisualStyleBackColor = true;
+            this.button2_hapus.Click += new System.EventHandler(this.button2_hapus_Click);
+            // 
+            // button1_baru
+            // 
+            this.button1_baru.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1_baru.Image = global::SPBU.Properties.Resources.add16;
+            this.button1_baru.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1_baru.Location = new System.Drawing.Point(21, 100);
+            this.button1_baru.Name = "button1_baru";
+            this.button1_baru.Size = new System.Drawing.Size(63, 37);
+            this.button1_baru.TabIndex = 10;
+            this.button1_baru.Text = "Baru";
+            this.button1_baru.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1_baru.UseVisualStyleBackColor = true;
+            this.button1_baru.Click += new System.EventHandler(this.button1_baru_Click);
+            // 
             // Form_POMPA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,8 +217,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1_idPompa);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form_POMPA";
-            this.Text = "Form_POMPA";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Pompa";
             this.Load += new System.EventHandler(this.Form_POMPA_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

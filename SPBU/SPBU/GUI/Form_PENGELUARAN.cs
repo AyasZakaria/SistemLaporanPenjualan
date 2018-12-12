@@ -98,29 +98,35 @@ namespace SPBU.GUI
 
         private void button_simpan_Click(object sender, EventArgs e)
         {
-            try
+            if (textBox_idPengeluaran.Text == "" || textBox_jumlah.Text == "" || richTextBox_deskripsi.Text == "" || Convert.ToDateTime(dateTimePicker1.Value).ToString("yyyy-MM-dd") == "")
             {
-                textBox_idPengeluaran.Text = AutoNumber.Auto("tbl_pengeluaran", "T", "id_pengeluaran");
-                SqlCommand command = new SqlCommand();
-                command.Connection = konn.GetConn();
-                command.Connection.Open();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO tbl_pengeluaran VALUES('" + textBox_idPengeluaran.Text + "','" + richTextBox_deskripsi.Text + "','" + textBox_jumlah.Text + "','" + Convert.ToDateTime(dateTimePicker1.Value).ToString("yyyy-MM-dd") + "','" + textBox_jumlah.Text + "')";
-                command.ExecuteNonQuery();
-                command.Connection.Close(); //pesan berhasil 
-                MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
-                loadDaftar(); //memanggil bersih data 
-                clear();
-            }//try 
-
-
-            catch (SqlException h)
+                MessageBox.Show("Data Harus Di Isi !!!");
+            }
+            else
             {
-                MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    textBox_idPengeluaran.Text = AutoNumber.Auto("tbl_pengeluaran", "K", "id_pengeluaran");
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = konn.GetConn();
+                    command.Connection.Open();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "INSERT INTO tbl_pengeluaran VALUES('" + textBox_idPengeluaran.Text + "','" + richTextBox_deskripsi.Text + "','" + textBox_jumlah.Text + "','" + Convert.ToDateTime(dateTimePicker1.Value).ToString("yyyy-MM-dd") + "')";
+                    command.ExecuteNonQuery();
+                    command.Connection.Close(); //pesan berhasil 
+                    MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
+                    loadDaftar(); //memanggil bersih data 
+                    clear();
+                }//try 
 
-            }//catch
+
+                catch (SqlException h)
+                {
+                    MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }//catch
+            }
         }
-
         private void dataGridView_pengeluaran_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             textBox_idPengeluaran.Text = dataGridView_pengeluaran.Rows[e.RowIndex].Cells[0].Value.ToString();

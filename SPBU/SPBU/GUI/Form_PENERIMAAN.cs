@@ -15,7 +15,6 @@ namespace SPBU.GUI
     {
         Kelas.Koneksi konn = new Kelas.Koneksi();
         public String id_bbm_penerimaan;
-      
 
         public Form_PENERIMAAN()
         {
@@ -79,6 +78,24 @@ namespace SPBU.GUI
             dateTimePicker_penerimaan.Enabled = param2;
         }//aturTombol 
 
+        string ambilidbbm(string namabbm)
+        {
+            string id = "";
+            SqlConnection sqlConnection = konn.GetConn();
+            SqlCommand sqlCmd = new SqlCommand("select id_bbm from tbl_bbm where nama_bbm = '" + namabbm + "'", sqlConnection);// ambil pertalite
+            sqlConnection.Open();
+            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                id = Convert.ToString(sqlReader[0].ToString());
+                // MessageBox.Show("" + id);
+            }
+            sqlReader.Close();
+            //MessageBox.Show("" + id);
+            return id;
+        }
+
         private void textBox_cari_TextChanged(object sender, EventArgs e)
         {
             if (textBox_cari.Text == "")
@@ -116,7 +133,7 @@ namespace SPBU.GUI
 
             while (sqlReader.Read())
             {
-                textBox_idpenerimaan.Text=(Convert.ToInt64(sqlReader[0].ToString()).ToString());
+                textBox_idpenerimaan.Text = (Convert.ToInt64(sqlReader[0].ToString()).ToString());
             }
             sqlReader.Close();
             clear();
@@ -130,26 +147,33 @@ namespace SPBU.GUI
 
         private void button_simpan_Click(object sender, EventArgs e)
         {
-            try
+            if (textBox_namaBbm_penerimaan.Text == "" || textBox_namaBbm_penerimaan.Text == "" || textBox_jumlahPenerimaan.Text == "" || Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") == "")
             {
-
-                SqlCommand command = new SqlCommand();
-                command.Connection = konn.GetConn();
-                command.Connection.Open();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO tbl_penerimaan VALUES('"+ id_bbm_penerimaan + "','" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "','" + textBox_jumlahPenerimaan.Text + "')";
-                command.ExecuteNonQuery();
-                command.Connection.Close(); //pesan berhasil 
-                MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
-                loadDaftar(); //memanggil bersih data 
-                clear();
-            }//try 
-
-            catch (SqlException h)
+                MessageBox.Show("Data Harus Di Isi !!!");
+            }
+            else
             {
-                MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
 
-            }//catch
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = konn.GetConn();
+                    command.Connection.Open();
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "INSERT INTO tbl_penerimaan VALUES('" + id_bbm_penerimaan + "','" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "','" + textBox_jumlahPenerimaan.Text + "')";
+                    command.ExecuteNonQuery();
+                    command.Connection.Close(); //pesan berhasil 
+                    MessageBox.Show("Data Berhasil Disimpan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
+                    loadDaftar(); //memanggil bersih data 
+                    clear();
+                }//try 
+
+                catch (SqlException h)
+                {
+                    MessageBox.Show("Gagal Simpan Data\n" + h, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }//catch
+            }
         }
 
         private void button_ubah_Click(object sender, EventArgs e)
@@ -160,7 +184,7 @@ namespace SPBU.GUI
                 command.Connection = konn.GetConn();
                 command.Connection.Open();
                 command.CommandType = CommandType.Text;
-                command.CommandText = "UPDATE tbl_penerimaan SET id_bbm='" + id_bbm_penerimaan + "',tgl_penerimaan='" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "',jumlah_penerimaan='" + textBox_jumlahPenerimaan.Text + "'WHERE id_penerimaan='" + textBox_idpenerimaan.Text + "'";
+                command.CommandText = "UPDATE tbl_penerimaan SET id_bbm='" + ambilidbbm(textBox_namaBbm_penerimaan.Text) + "',tgl_penerimaan='" + Convert.ToDateTime(dateTimePicker_penerimaan.Value).ToString("yyyy-MM-dd") + "',jumlah_penerimaan='" + textBox_jumlahPenerimaan.Text + "'WHERE id_penerimaan='" + textBox_idpenerimaan.Text + "'";
                 Console.WriteLine(command.CommandText); command.ExecuteNonQuery();
                 command.Connection.Close(); //pesan berhasil
                 MessageBox.Show("Data Berhasil Diubah", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); //memanggil tampil data 
@@ -199,6 +223,39 @@ namespace SPBU.GUI
             Dialog_BBM.men = "penerimaan";
             bbm.penerimaan = this;
             bbm.ShowDialog();
+        }
+
+        private void dataGridView_pernerimaan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                textBox_idpenerimaan.Text = dataGridView_pernerimaan.Rows[e.RowIndex].Cells[0].Value.ToString();
+                textBox_namaBbm_penerimaan.Text = dataGridView_pernerimaan.Rows[e.RowIndex].Cells[1].Value.ToString();
+                dateTimePicker_penerimaan.Value = Convert.ToDateTime(dataGridView_pernerimaan.Rows[e.RowIndex].Cells[2].Value.ToString());
+                textBox_jumlahPenerimaan.Text = dataGridView_pernerimaan.Rows[e.RowIndex].Cells[3].Value.ToString();
+                aturTombol(true, true);
+                button_simpan.Enabled = false;
+            }//try 
+            catch
+            {
+            }//catch
+        }
+
+        private void dataGridView_pernerimaan_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+             try
+            {
+                textBox_idpenerimaan.Text = dataGridView_pernerimaan.Rows[e.RowIndex].Cells[0].Value.ToString();
+                textBox_namaBbm_penerimaan.Text = dataGridView_pernerimaan.Rows[e.RowIndex].Cells[1].Value.ToString();
+                dateTimePicker_penerimaan.Value = Convert.ToDateTime(dataGridView_pernerimaan.Rows[e.RowIndex].Cells[2].Value.ToString());
+                textBox_jumlahPenerimaan.Text = dataGridView_pernerimaan.Rows[e.RowIndex].Cells[3].Value.ToString();
+                aturTombol(true, true);
+                button_simpan.Enabled = false;
+            }//try 
+            catch
+             {
+
+             }
         }
     }
 }
